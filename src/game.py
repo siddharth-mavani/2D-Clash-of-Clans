@@ -12,6 +12,7 @@ class Game:
         self.activeBuildings = []
         self.activeBarbarians = []
         self.activeKing = None
+        self.numActiveBuildings = 0
 
         # Calling init functions
         self.initBoard()

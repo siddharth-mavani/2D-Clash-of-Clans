@@ -16,6 +16,8 @@ class TownHall(Building):
         self.center = []
 
     def initTH(game):
+        game.numActiveBuildings += 1
+
         TH = TownHall('TH', MAX_TOWN_HALL_HEALTH, TOWN_HALL_SYMBOL)
         game.activeBuildings.append(TH)
 
@@ -50,6 +52,7 @@ class Hut(Building):
         self.center = []
 
     def initHut(game):
+        game.numActiveBuildings += 5
         H1 = Hut('H1', MAX_HUT_HEALTH, HUT_SYMBOL)
         H2 = Hut('H2', MAX_HUT_HEALTH, HUT_SYMBOL)
         H3 = Hut('H3', MAX_HUT_HEALTH, HUT_SYMBOL)

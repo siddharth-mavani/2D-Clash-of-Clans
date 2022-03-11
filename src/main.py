@@ -5,7 +5,7 @@ import os
 from input import input_to, Get
 from defs import *
 from game import Game
-from barbarian import moveBarbarians, spawnBarbarian
+from barbarian import attackBarbarians, moveBarbarians, spawnBarbarian
 from king import King
 
 # Initializing Game
@@ -34,3 +34,4 @@ while(game.state):
             i.health -= 26
 
     moveBarbarians(game)
+    attackBarbarians(game)

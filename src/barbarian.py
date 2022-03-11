@@ -55,7 +55,30 @@ class Barbarian(Character):
                 self.position = [[self.xPos, self.yPos]]
                 game.board[self.xPos][self.yPos] = self.symbol
 
-    
+    def attack(self, game):
+
+        # Get the closest building from self
+        closestBuilding = self.getClosestBuilding(game)
+
+        checkSides = [self.xPos+1, self.yPos] in closestBuilding.position or [self.xPos-1, self.yPos] in closestBuilding.position or [self.xPos, self.yPos+1] in closestBuilding.position or [self.xPos, self.yPos-1] in closestBuilding.position
+        checkCorners = [self.xPos+1, self.yPos+1] in closestBuilding.position or [self.xPos+1, self.yPos-1] in closestBuilding.position or [self.xPos-1, self.yPos+1] in closestBuilding.position or [self.xPos-1, self.yPos-1] in closestBuilding.position
+
+        # Check if barbarians next move is coinciding with building.symbol
+        if(checkSides or checkCorners):
+            # Attack building
+            closestBuilding.health -= self.damage
+
+            if(closestBuilding.health <= 0):
+                # make position of building equal to BG
+
+                for i in closestBuilding.position:
+                    game.board[i[0]][i[1]] = BG
+
+                # set center of building to 
+                closestBuilding.center = [100000, 100000]
+                game.numActiveBuildings -= 1
+
+
 
 def spawnBarbarian(game, locID):
     if(locID == 1):
@@ -98,3 +121,7 @@ def renderBarbarianColor(game, barbarians):
 def moveBarbarians(game):
     for barb in game.activeBarbarians:
         barb.move(game)
+
+def attackBarbarians(game):
+    for barb in game.activeBarbarians:
+        barb.attack(game)
