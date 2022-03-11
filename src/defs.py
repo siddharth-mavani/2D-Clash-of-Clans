@@ -14,10 +14,10 @@ COLS = 35
 # Buildings
 
 ## Town Hall
-MAX_TOWN_HALL_HEALTH = 100
+MAX_TOWN_HALL_HEALTH = 200
 TOWN_HALL_SYMBOL = 'T '
 ## Hut
-MAX_HUT_HEALTH = 50
+MAX_HUT_HEALTH = 100
 HUT_SYMBOL = 'H '
 
 # ---------------------------------------------------------------------------------------------------------------------#

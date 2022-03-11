@@ -1,3 +1,6 @@
+# Importing Default Libraries
+from colorama import init, Fore, Back, Style
+
 # Import Custom Modules
 from defs import *
 class Building:
@@ -9,9 +12,7 @@ class Building:
 class TownHall(Building):
     def __init__(self, name, health, symbol):
         super().__init__(name, health, symbol)
-
-    def renderColor():
-        print("yo")
+        self.position = []
 
     def initTH(game):
         TH = TownHall('TH', MAX_TOWN_HALL_HEALTH, TOWN_HALL_SYMBOL)
@@ -19,13 +20,21 @@ class TownHall(Building):
 
         centerX = ROWS//2
         centerY = COLS//2
+        coord = []
         for i in range(centerX-2, centerX+2):
+            point = [i]
             for j in range(centerY-2, centerY+1):
+                point.append(j)
+                coord.append(point)
+                point = [i]
                 game.board[i][j] = TH.symbol
+            
+        TH.position = coord
 
 class Hut(Building):
     def __init__(self, name, health, symbol):
         super().__init__(name, health, symbol)
+        self.position = []
 
     def initHut(game):
         H1 = Hut('H1', MAX_HUT_HEALTH, HUT_SYMBOL)
@@ -42,30 +51,104 @@ class Hut(Building):
 
         x1 = ROWS//4
         y1 = COLS//4
+        coord = []
         for i in range(x1, x1+2):
+            point = [i]
             for j in range(y1-1, y1+1):
+                point.append(j)
+                coord.append(point)
+                point = [i]
                 game.board[i][j] = H1.symbol
+        H1.position = coord
 
         x2 = x1*3
         y2 = y1
+        coord = []
         for i in range(x2, x2+2):
+            point = [i]
             for j in range(y2-1, y2+1):
+                point.append(j)
+                coord.append(point)
+                point = [i]
                 game.board[i][j] = H2.symbol
+        H2.position = coord
 
         x3 = x1
         y3 = y1*3
+        coord = []
         for i in range(x3, x3+2):
+            point = [i]
             for j in range(y3-1, y3+1):
+                point.append(j)
+                coord.append(point)
+                point = [i]
                 game.board[i][j] = H3.symbol
+        H3.position = coord
         
         x4 = x1*3
         y4 = y1*3
+        coord = []
         for i in range(x4, x4+2):
+            point = [i]
             for j in range(y4-1, y4+1):
+                point.append(j)
+                coord.append(point)
+                point = [i]
                 game.board[i][j] = H4.symbol
+        H4.position = coord
 
         x5 = x1*2
         y5 = y1
+        coord = []
         for i in range(x5, x5+2):
+            point = [i]
             for j in range(y5-1, y5+1):
+                point.append(j)
+                coord.append(point)
+                point = [i]
                 game.board[i][j] = H5.symbol
+        H5.position = coord
+
+
+def renderColor(game, activeBuildings):
+    renderColorHut(game, activeBuildings[1:])
+    renderColorTH(game, activeBuildings[0])
+
+
+def renderColorHut(game, huts):
+    for hut in huts:
+        if hut.health <= 0:
+            hut.symbol = BG
+            for i in hut.position:
+                game.board[i[0]][i[1]] = BG
+        elif(hut.health <= 0.25 * MAX_HUT_HEALTH):
+            hut.symbol = Back.RED + HUT_SYMBOL + Style.RESET_ALL
+            for i in hut.position:
+                game.board[i[0]][i[1]] = hut.symbol
+        elif(hut.health <= 0.75 * MAX_HUT_HEALTH):
+            hut.symbol = Back.YELLOW + HUT_SYMBOL + Style.RESET_ALL
+            for i in hut.position:
+                game.board[i[0]][i[1]] = hut.symbol
+        else:
+            hut.symbol = Back.GREEN + HUT_SYMBOL + Style.RESET_ALL
+            for i in hut.position:
+                game.board[i[0]][i[1]] = hut.symbol
+
+def renderColorTH(game, TH):
+    if TH.health <= 0:
+        TH.symbol = BG
+        for i in TH.position:
+            game.board[i[0]][i[1]] = BG
+    elif(TH.health <= 0.25 * MAX_TOWN_HALL_HEALTH):
+        TH.symbol = Back.RED + HUT_SYMBOL + Style.RESET_ALL
+        for i in TH.position:
+            game.board[i[0]][i[1]] = TH.symbol
+    elif(TH.health <= 0.75 * MAX_TOWN_HALL_HEALTH):
+        TH.symbol = Back.YELLOW + HUT_SYMBOL + Style.RESET_ALL
+        for i in TH.position:
+            game.board[i[0]][i[1]] = TH.symbol
+    else:
+        TH.symbol = Back.GREEN + HUT_SYMBOL + Style.RESET_ALL
+        for i in TH.position:
+            game.board[i[0]][i[1]] = TH.symbol
+    

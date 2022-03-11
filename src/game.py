@@ -1,6 +1,6 @@
 # Importing Custom Modules
 from defs import *
-from building import TownHall, Hut
+from building import TownHall, Hut, renderColor
 from king import King
 
 class Game:
@@ -40,6 +40,8 @@ class Game:
             self.board.append(row)
     
     def printBoard(self):
+
+        renderColor(self, self.activeBuildings)
         board = self.board
         for i in range(len(board)):
             for j in range(len(board[i])):

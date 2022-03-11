@@ -29,6 +29,10 @@ while(game.state):
         spawnBarbarian(game, 2)
     elif key == '3':
         spawnBarbarian(game, 3)
+    elif key == '4':
+        for i in game.activeBuildings:
+            i.health -= 26
+            
 
 
 
