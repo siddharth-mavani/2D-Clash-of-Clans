@@ -16,6 +16,44 @@ class King(Character):
         game.board[king.xPos][king.yPos] = king.symbol
         game.activeKing = king
 
+    def move(game, direction):
+        # Check if object exists in the direction
+        if(direction == 'w'):
+            if(game.board[game.activeKing.xPos-1][game.activeKing.yPos] != BG):
+                return False
+        elif(direction == 's'):
+            if(game.board[game.activeKing.xPos+1][game.activeKing.yPos] != BG):
+                return False
+        elif(direction == 'a'):
+            if(game.board[game.activeKing.xPos][game.activeKing.yPos-1] != BG):
+                return False
+        elif(direction == 'd'):
+            if(game.board[game.activeKing.xPos][game.activeKing.yPos+1] != BG):
+                return False    
+
+        # Move the object
+        if(direction == 'w'):
+            game.board[game.activeKing.xPos][game.activeKing.yPos] = BG
+            game.activeKing.xPos -= 1 * game.activeKing.speed
+            game.activeKing.position = [[game.activeKing.xPos, game.activeKing.yPos]]
+            game.board[game.activeKing.xPos][game.activeKing.yPos] = game.activeKing.symbol
+        elif(direction == 's'):
+            game.board[game.activeKing.xPos][game.activeKing.yPos] = BG
+            game.activeKing.xPos += 1 * game.activeKing.speed
+            game.activeKing.position = [[game.activeKing.xPos, game.activeKing.yPos]]
+            game.board[game.activeKing.xPos][game.activeKing.yPos] = game.activeKing.symbol
+        elif(direction == 'a'):
+            game.board[game.activeKing.xPos][game.activeKing.yPos] = BG
+            game.activeKing.yPos -= 1 * game.activeKing.speed
+            game.activeKing.position = [[game.activeKing.xPos, game.activeKing.yPos]]
+            game.board[game.activeKing.xPos][game.activeKing.yPos] = game.activeKing.symbol
+        elif(direction == 'd'):
+            game.board[game.activeKing.xPos][game.activeKing.yPos] = BG
+            game.activeKing.yPos += 1 * game.activeKing.speed
+            game.activeKing.position = [[game.activeKing.xPos, game.activeKing.yPos]]
+            game.board[game.activeKing.xPos][game.activeKing.yPos] = game.activeKing.symbol
+
+
 
 def renderKingColor(game, king):
     if king.health <= 0:
