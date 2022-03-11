@@ -11,15 +11,15 @@ game = Game()
 
 while(game.state):
     # Printing Board
-    
+    os.system('clear')
+    game.printBoard()
 
     # Getting Input
     get = Get()
     key = input_to(get)
 
     if key == 'p':
-        os.system('clear')
-        game.printBoard()
+        pass
     elif key == 'q':
         game.state = False
 

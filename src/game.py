@@ -18,7 +18,20 @@ class Game:
         for i in range(ROWS):
             row = []
             for j in range(COLS):
-                row.append(BG)
+                if(i == 0 and j == 0):
+                    row.append(TOP_LEFT_CORNER)
+                elif(i == 0 and j == COLS-1):
+                    row.append(TOP_RIGHT_CORNER)
+                elif(i == ROWS-1 and j == 0):
+                    row.append(BOTTOM_LEFT_CORNER)
+                elif(i == ROWS-1 and j == COLS-1):
+                    row.append(BOTTOM_RIGHT_CORNER)
+                elif(i == 0 or i == ROWS-1):
+                    row.append(TOP_WALLS)
+                elif(j == 0 or j == COLS-1):
+                    row.append(SIDE_WALLS)
+                else:
+                    row.append(BG)
             row.append('\n')
             self.board.append(row)
     
@@ -29,7 +42,7 @@ class Game:
                 print(board[i][j], end='')
 
     def initTH(self):
-        TH = Building('TH', TOWN_HALL_HEALTH, TOWN_HALL_SYMBOL)
+        TH = Building('TH', MAX_TOWN_HALL_HEALTH, TOWN_HALL_SYMBOL)
         self.activeBuildings.append(TH)
 
         centerX = ROWS//2
@@ -40,11 +53,11 @@ class Game:
 
 
     def initHut(self):
-        H1 = Building('H1', HUT_HEALTH, HUT_SYMBOL)
-        H2 = Building('H2', HUT_HEALTH, HUT_SYMBOL)
-        H3 = Building('H3', HUT_HEALTH, HUT_SYMBOL)
-        H4 = Building('H4', HUT_HEALTH, HUT_SYMBOL)
-        H5 = Building('H5', HUT_HEALTH, HUT_SYMBOL)
+        H1 = Building('H1', MAX_HUT_HEALTH, HUT_SYMBOL)
+        H2 = Building('H2', MAX_HUT_HEALTH, HUT_SYMBOL)
+        H3 = Building('H3', MAX_HUT_HEALTH, HUT_SYMBOL)
+        H4 = Building('H4', MAX_HUT_HEALTH, HUT_SYMBOL)
+        H5 = Building('H5', MAX_HUT_HEALTH, HUT_SYMBOL)
 
         self.activeBuildings.append(H1)
         self.activeBuildings.append(H2)
