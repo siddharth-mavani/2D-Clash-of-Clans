@@ -1,3 +1,6 @@
+# Importing Default Libraries
+from colorama import Back, Style
+
 # Importing Custom Modules
 from defs import *
 from character import Character
@@ -6,6 +9,7 @@ class Barbarian(Character):
     def __init__(self, name, health, damage, speed, symbol, xPos, yPos):
         super().__init__(name, health, damage, speed, symbol, xPos, yPos)
         self.status = 'alive'
+        self.position = [[xPos, yPos]]
 
 def spawnBarbarian(game, locID):
     if(locID == 1):
@@ -24,3 +28,22 @@ def spawnBarbarian(game, locID):
     barb = Barbarian(BarbID, MAX_BARB_HEALTH, BARB_DAMAGE, BARB_SPEED, BARB_SYMBOL, x, y)
     game.activeBarbarians.append(barb)
     game.board[x][y] = barb.symbol
+
+def renderBarbarianColor(game, barbarians):
+    for barb in barbarians:
+        if barb.health <= 0:
+            barb.symbol = BG
+            for i in barb.position:
+                game.board[i[0]][i[1]] = BG
+        elif(barb.health <= 0.25 * MAX_BARB_HEALTH):
+            barb.symbol = Back.RED + BARB_SYMBOL + Style.RESET_ALL
+            for i in barb.position:
+                game.board[i[0]][i[1]] = barb.symbol
+        elif(barb.health <= 0.75 * MAX_BARB_HEALTH):
+            barb.symbol = Back.YELLOW + BARB_SYMBOL + Style.RESET_ALL
+            for i in barb.position:
+                game.board[i[0]][i[1]] = barb.symbol
+        else:
+            barb.symbol = Back.GREEN + BARB_SYMBOL + Style.RESET_ALL
+            for i in barb.position:
+                game.board[i[0]][i[1]] = barb.symbol

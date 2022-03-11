@@ -11,5 +11,3 @@ class Character:
         self.xPos = xPos
         self.yPos = yPos
         self.status = 'alive'
-
-    

@@ -1,5 +1,5 @@
 # Importing Default Libraries
-from colorama import init, Fore, Back, Style
+from colorama import Back, Style
 
 # Import Custom Modules
 from defs import *
@@ -110,7 +110,7 @@ class Hut(Building):
         H5.position = coord
 
 
-def renderColor(game, activeBuildings):
+def renderBuildingColor(game, activeBuildings):
     renderColorHut(game, activeBuildings[1:])
     renderColorTH(game, activeBuildings[0])
 

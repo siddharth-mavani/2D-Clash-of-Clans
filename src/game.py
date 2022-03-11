@@ -1,7 +1,8 @@
 # Importing Custom Modules
 from defs import *
-from building import TownHall, Hut, renderColor
-from king import King
+from building import TownHall, Hut, renderBuildingColor
+from king import King, renderKingColor
+from barbarian import renderBarbarianColor
 
 class Game:
     def __init__(self):
@@ -10,6 +11,7 @@ class Game:
         self.state = True
         self.activeBuildings = []
         self.activeBarbarians = []
+        self.activeKing = None
 
         # Calling init functions
         self.initBoard()
@@ -41,7 +43,10 @@ class Game:
     
     def printBoard(self):
 
-        renderColor(self, self.activeBuildings)
+        renderBuildingColor(self, self.activeBuildings)
+        renderKingColor(self, self.activeKing)
+        renderBarbarianColor(self, self.activeBarbarians)
+
         board = self.board
         for i in range(len(board)):
             for j in range(len(board[i])):
