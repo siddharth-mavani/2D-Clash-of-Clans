@@ -8,8 +8,54 @@ from character import Character
 class Barbarian(Character):
     def __init__(self, name, health, damage, speed, symbol, xPos, yPos):
         super().__init__(name, health, damage, speed, symbol, xPos, yPos)
-        self.status = 'alive'
         self.position = [[xPos, yPos]]
+
+    def getDistance(self, building):
+        distance = abs(self.xPos - building.center[0]) + abs(self.yPos - building.center[1])
+        return distance
+
+    def getClosestBuilding(self, game):
+        # Get the closest building from self
+        closestBuilding = None
+        closestDistance = None
+        for building in game.activeBuildings:
+            distance = self.getDistance(building)
+            if(closestDistance == None or distance < closestDistance):
+                closestBuilding = building
+                closestDistance = distance
+        
+        return closestBuilding
+
+    def move(self, game):
+        closestBuilding = self.getClosestBuilding(game)
+        
+        # Move Barbarian towards closest building
+        if(self.xPos < closestBuilding.center[0]):
+            if(game.board[self.xPos+1][self.yPos] == BG):
+                game.board[self.xPos][self.yPos] = BG
+                self.xPos += 1 * self.speed
+                self.position = [[self.xPos, self.yPos]]
+                game.board[self.xPos][self.yPos] = self.symbol
+        if(self.xPos > closestBuilding.center[0]):
+            if(game.board[self.xPos-1][self.yPos] == BG):
+                game.board[self.xPos][self.yPos] = BG
+                self.xPos -= 1 * self.speed
+                self.position = [[self.xPos, self.yPos]]
+                game.board[self.xPos][self.yPos] = self.symbol
+        if(self.yPos < closestBuilding.center[1]):
+            if(game.board[self.xPos][self.yPos+1] == BG):
+                game.board[self.xPos][self.yPos] = BG
+                self.yPos += 1 * self.speed
+                self.position = [[self.xPos, self.yPos]]
+                game.board[self.xPos][self.yPos] = self.symbol
+        if(self.yPos > closestBuilding.center[1]):
+            if(game.board[self.xPos][self.yPos-1] == BG):
+                game.board[self.xPos][self.yPos] = BG
+                self.yPos -= 1 * self.speed
+                self.position = [[self.xPos, self.yPos]]
+                game.board[self.xPos][self.yPos] = self.symbol
+
+    
 
 def spawnBarbarian(game, locID):
     if(locID == 1):
@@ -47,3 +93,8 @@ def renderBarbarianColor(game, barbarians):
             barb.symbol = Back.GREEN + BARB_SYMBOL + Style.RESET_ALL
             for i in barb.position:
                 game.board[i[0]][i[1]] = barb.symbol
+
+
+def moveBarbarians(game):
+    for barb in game.activeBarbarians:
+        barb.move(game)

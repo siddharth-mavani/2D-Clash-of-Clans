@@ -5,7 +5,7 @@ import os
 from input import input_to, Get
 from defs import *
 from game import Game
-from barbarian import spawnBarbarian
+from barbarian import moveBarbarians, spawnBarbarian
 from king import King
 
 # Initializing Game
@@ -20,6 +20,7 @@ while(game.state):
     get = Get()
     key = input_to(get)
 
+    # Handling Input
     if key == 'p':
         pass
     elif key == 'q':
@@ -31,9 +32,5 @@ while(game.state):
     elif key == '4':
         for i in game.activeBuildings:
             i.health -= 26
-            
 
-
-
-
-
+    moveBarbarians(game)

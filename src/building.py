@@ -13,6 +13,7 @@ class TownHall(Building):
     def __init__(self, name, health, symbol):
         super().__init__(name, health, symbol)
         self.position = []
+        self.center = []
 
     def initTH(game):
         TH = TownHall('TH', MAX_TOWN_HALL_HEALTH, TOWN_HALL_SYMBOL)
@@ -31,10 +32,22 @@ class TownHall(Building):
             
         TH.position = coord
 
+        avgX = 0
+        avgY = 0
+        for i in coord:
+            avgX += i[0]
+            avgY += i[1]
+
+        avgX = avgX/len(coord)
+        avgY = avgY/len(coord)
+
+        TH.center = [avgX, avgY]
+
 class Hut(Building):
     def __init__(self, name, health, symbol):
         super().__init__(name, health, symbol)
         self.position = []
+        self.center = []
 
     def initHut(game):
         H1 = Hut('H1', MAX_HUT_HEALTH, HUT_SYMBOL)
@@ -59,7 +72,18 @@ class Hut(Building):
                 coord.append(point)
                 point = [i]
                 game.board[i][j] = H1.symbol
+
         H1.position = coord
+       
+        avgX = 0
+        avgY = 0
+        for i in coord:
+            avgX += i[0]
+            avgY += i[1]
+        avgX = avgX/len(coord)
+        avgY = avgY/len(coord)
+        H1.center = [avgX, avgY]
+
 
         x2 = x1*3
         y2 = y1
@@ -71,7 +95,17 @@ class Hut(Building):
                 coord.append(point)
                 point = [i]
                 game.board[i][j] = H2.symbol
+
         H2.position = coord
+
+        avgX = 0
+        avgY = 0
+        for i in coord:
+            avgX += i[0]
+            avgY += i[1]
+        avgX = avgX/len(coord)
+        avgY = avgY/len(coord)
+        H2.center = [avgX, avgY]
 
         x3 = x1
         y3 = y1*3
@@ -83,7 +117,17 @@ class Hut(Building):
                 coord.append(point)
                 point = [i]
                 game.board[i][j] = H3.symbol
+
         H3.position = coord
+
+        avgX = 0
+        avgY = 0
+        for i in coord:
+            avgX += i[0]
+            avgY += i[1]
+        avgX = avgX/len(coord)
+        avgY = avgY/len(coord)
+        H3.center = [avgX, avgY]
         
         x4 = x1*3
         y4 = y1*3
@@ -95,7 +139,17 @@ class Hut(Building):
                 coord.append(point)
                 point = [i]
                 game.board[i][j] = H4.symbol
+
         H4.position = coord
+
+        avgX = 0
+        avgY = 0
+        for i in coord:
+            avgX += i[0]
+            avgY += i[1]
+        avgX = avgX/len(coord)
+        avgY = avgY/len(coord)
+        H4.center = [avgX, avgY]
 
         x5 = x1*2
         y5 = y1
@@ -107,7 +161,17 @@ class Hut(Building):
                 coord.append(point)
                 point = [i]
                 game.board[i][j] = H5.symbol
+
         H5.position = coord
+
+        avgX = 0
+        avgY = 0
+        for i in coord:
+            avgX += i[0]
+            avgY += i[1]
+        avgX = avgX/len(coord)
+        avgY = avgY/len(coord)
+        H5.center = [avgX, avgY]
 
 
 def renderBuildingColor(game, activeBuildings):

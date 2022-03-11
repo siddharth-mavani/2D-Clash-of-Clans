@@ -8,7 +8,6 @@ from character import Character
 class King(Character):
     def __init__(self, name, health, damage, speed, symbol, xPos, yPos):
         super().__init__(name, health, damage, speed, symbol, xPos, yPos)
-        self.status = 'alive'
         self.position = [[xPos, yPos]]
 
     def initKing(game):
@@ -52,7 +51,6 @@ class King(Character):
             game.activeKing.yPos += 1 * game.activeKing.speed
             game.activeKing.position = [[game.activeKing.xPos, game.activeKing.yPos]]
             game.board[game.activeKing.xPos][game.activeKing.yPos] = game.activeKing.symbol
-
 
 
 def renderKingColor(game, king):
