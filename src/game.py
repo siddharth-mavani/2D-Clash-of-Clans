@@ -12,6 +12,7 @@ class Game:
         # Calling init functions
         self.initBoard()
         self.initTH()
+        self.initHut()
 
     def initBoard(self):
         for i in range(ROWS):
@@ -37,9 +38,47 @@ class Game:
             for j in range(centerY-2, centerY+1):
                 self.board[i][j] = TH.symbol
 
-    
 
+    def initHut(self):
+        H1 = Building('H1', HUT_HEALTH, HUT_SYMBOL)
+        H2 = Building('H2', HUT_HEALTH, HUT_SYMBOL)
+        H3 = Building('H3', HUT_HEALTH, HUT_SYMBOL)
+        H4 = Building('H4', HUT_HEALTH, HUT_SYMBOL)
+        H5 = Building('H5', HUT_HEALTH, HUT_SYMBOL)
 
+        self.activeBuildings.append(H1)
+        self.activeBuildings.append(H2)
+        self.activeBuildings.append(H3)
+        self.activeBuildings.append(H4)
+        self.activeBuildings.append(H5)
 
+        x1 = ROWS//4
+        y1 = COLS//4
+        for i in range(x1, x1+2):
+            for j in range(y1-1, y1+1):
+                self.board[i][j] = H1.symbol
 
+        x2 = x1*3
+        y2 = y1
+        for i in range(x2, x2+2):
+            for j in range(y2-1, y2+1):
+                self.board[i][j] = H2.symbol
 
+        x3 = x1
+        y3 = y1*3
+        for i in range(x3, x3+2):
+            for j in range(y3-1, y3+1):
+                self.board[i][j] = H3.symbol
+        
+        x4 = x1*3
+        y4 = y1*3
+        for i in range(x4, x4+2):
+            for j in range(y4-1, y4+1):
+                self.board[i][j] = H4.symbol
+
+        x5 = x1*2
+        y5 = y1
+        for i in range(x5, x5+2):
+            for j in range(y5-1, y5+1):
+                self.board[i][j] = H5.symbol
+                
