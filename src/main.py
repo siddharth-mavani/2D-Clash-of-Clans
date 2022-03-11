@@ -5,6 +5,7 @@ import os
 from input import input_to, Get
 from defs import *
 from game import Game
+from barbarian import Barbarian, spawnBarbarian
 
 # Initializing Game
 game = Game()
@@ -22,6 +23,12 @@ while(game.state):
         pass
     elif key == 'q':
         game.state = False
+    elif key == '1':
+        spawnBarbarian(game, 1)
+    elif key == '2':
+        spawnBarbarian(game, 2)
+    elif key == '3':
+        spawnBarbarian(game, 3)
 
 
 

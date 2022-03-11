@@ -1,7 +1,7 @@
 # Village Layout
-BG = "  "
-SIDE_WALLS = "| "
-TOP_WALLS = "- "
+BG = ". "
+SIDE_WALL = "| "
+TOP_WALL = "- "
 TOP_RIGHT_CORNER = "┐"
 TOP_LEFT_CORNER = "┌ "
 BOTTOM_RIGHT_CORNER = "┘"
@@ -22,4 +22,15 @@ HUT_SYMBOL = 'H '
 
 # ---------------------------------------------------------------------------------------------------------------------#
 
+# Characters
 
+## Barbarian
+MAX_BARB_HEALTH = 100
+BARB_DAMAGE = 10
+BARB_SPEED = 1
+BARB_SYMBOL = 'B '
+## King
+MAX_KING_HEALTH = 150
+KING_DAMAGE = 20
+KING_SPEED = 1
+KING_SYMBOL = 'K '
