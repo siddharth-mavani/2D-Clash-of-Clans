@@ -5,7 +5,7 @@ from cannon import Cannon
 from townHall import TownHall
 from king import King, renderKingColor
 from building import renderBuildingColor
-from barbarian import renderBarbarianColor
+from barbarian import renderBarbarianColor, moveBarbarians, attackBarbarians
 
 class Game:
     def __init__(self):
@@ -16,6 +16,8 @@ class Game:
         self.activeBarbarians = []
         self.activeKing = None
         self.numActiveBuildings = 0
+        self.numActiveTroops = 0
+        self.result = None
 
         # Calling init functions
         self.initBoard()
@@ -56,3 +58,16 @@ class Game:
         for i in range(len(board)):
             for j in range(len(board[i])):
                 print(board[i][j], end='')
+
+    def checkGame(self):
+        if(self.numActiveTroops == 0):
+            self.result = 'LOSE'
+            self.state = False
+        elif(self.numActiveBuildings == 0):
+            self.result = 'WIN'
+            self.state = False
+
+    def update(self):
+        moveBarbarians(self)
+        attackBarbarians(self)
+        self.checkGame()

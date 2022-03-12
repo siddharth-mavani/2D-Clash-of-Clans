@@ -5,7 +5,7 @@ import os
 from input import input_to, Get
 from defs import *
 from game import Game
-from barbarian import attackBarbarians, moveBarbarians, spawnBarbarian
+from barbarian import spawnBarbarian
 from king import King, attackKing
 
 # Initializing Game
@@ -35,6 +35,11 @@ while(game.state):
     elif key == ' ':
         attackKing(game)
         
+    game.update()
 
-    moveBarbarians(game)
-    attackBarbarians(game)
+
+os.system('clear')
+if(game.result == 'WIN'):
+    print('YOU WIN :)')
+elif(game.result == 'LOSE'):
+    print('YOU LOSE :(')

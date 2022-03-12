@@ -58,6 +58,7 @@ def spawnBarbarian(game, locID):
     barb = Barbarian(BarbID, MAX_BARB_HEALTH, BARB_DAMAGE, BARB_SPEED, BARB_SYMBOL, x, y)
     game.activeBarbarians.append(barb)
     game.board[x][y] = barb.symbol
+    game.numActiveTroops += 1
 
 def renderBarbarianColor(game, barbarians):
     for barb in barbarians:

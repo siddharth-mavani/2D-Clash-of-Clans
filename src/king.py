@@ -14,6 +14,7 @@ class King(Character):
         king = King('King', MAX_KING_HEALTH, KING_DAMAGE, KING_SPEED, KING_SYMBOL, 1, COLS-2)
         game.board[king.xPos][king.yPos] = king.symbol
         game.activeKing = king
+        game.numActiveTroops += 1
 
     def move(game, direction):
         # Check if object exists in the direction
