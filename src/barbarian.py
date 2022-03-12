@@ -82,8 +82,10 @@ def renderBarbarianColor(game, barbarians):
 
 def moveBarbarians(game):
     for barb in game.activeBarbarians:
-        barb.move(game)
+        if(barb.isActive):
+            barb.move(game)
 
 def attackBarbarians(game):
     for barb in game.activeBarbarians:
-        barb.attack(game)
+        if(barb.isActive):
+            barb.attack(game)

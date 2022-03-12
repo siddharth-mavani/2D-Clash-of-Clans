@@ -55,6 +55,10 @@ class King(Character):
 
 
 def renderKingColor(game, king):
+
+    if(game.activeKing == None):
+        return
+
     if king.health <= 0:
         king.symbol = BG
         for i in king.position:

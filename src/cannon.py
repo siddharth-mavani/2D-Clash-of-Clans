@@ -1,3 +1,6 @@
+# Importing Default Libraries
+import math
+
 # Importing Custome Modules
 from defs import *
 from building import Building
@@ -11,6 +14,7 @@ class Cannon(Building):
 
         self.position = []
         self.center = []
+        self.target = None
         
     def addCannon(self, game, x, y):
         coord = []
@@ -46,6 +50,10 @@ class Cannon(Building):
         game.activeBuildings.append(Cannon2)
         game.activeBuildings.append(Cannon3)
 
+        game.activeCannons.append(Cannon1)
+        game.activeCannons.append(Cannon2)
+        game.activeCannons.append(Cannon3)
+
         x1 = ROWS//4
         y1 = COLS//2
         Cannon1.addCannon(game, x1, y1)
@@ -58,4 +66,53 @@ class Cannon(Building):
         y3 = (COLS//4)*3
         Cannon3.addCannon(game, x3, y3)
 
+    def getDistance(self, character):
+        x1 = self.center[0]
+        y1 = self.center[1]
+        x2 = character.xPos
+        y2 = character.yPos
 
+        distance = math.sqrt((x2-x1)**2 + (y2-y1)**2)
+
+        return distance
+
+    def getTarget(self, game):
+        # Get closest barbarian or king from self
+        closestTarget = None
+        closestDistance = None
+        activeCharacters = game.activeBarbarians + [game.activeKing]
+        for character in activeCharacters:
+            distance = self.getDistance(character)
+            if((closestDistance == None or distance < closestDistance) and distance <= self.range and character.isActive):
+                closestTarget = character
+                closestDistance = distance
+        
+        if(closestTarget != None):
+            print('Closest Target: {} and distance: {}'.format(closestTarget.name, closestDistance))
+        return closestTarget
+
+    def attack(self, game):
+
+        if(self.target == None):
+            self.target = self.getTarget(game)
+
+        if(self.target != None):
+            print('Cannon {} is attacking {}'.format(self.name, self.target.name))
+            self.target.health -= self.damage
+
+            if(self.target.health <= 0):
+                print('{} has been killed!'.format(self.target.name))
+                if(self.target in game.activeBarbarians):
+                    self.target.isActive = False
+                    game.numActiveTroops -= 1
+                else:
+                    game.activeKing = None
+                    game.numActiveTroops -= 1
+
+                self.target = None
+
+
+
+def attackCannon(game):
+    for cannon in game.activeCannons:
+        cannon.attack(game)

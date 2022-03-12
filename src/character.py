@@ -1,3 +1,6 @@
+# Importing Default Libraries
+import math
+
 # Importing Custom Modules
 from defs import *
 
@@ -10,11 +13,10 @@ class Character:
         self.symbol = symbol
         self.xPos = xPos
         self.yPos = yPos
-        self.status = 'alive'
+        self.isActive = True
 
     def getDistance(self, building):
-        distance = abs(self.xPos - building.center[0]) + abs(self.yPos - building.center[1])
-        return distance
+        return math.sqrt((self.xPos - building.center[0])**2 + (self.yPos - building.center[1])**2)
 
     def getClosestBuilding(self, game):
         # Get the closest building from self

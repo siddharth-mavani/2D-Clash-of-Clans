@@ -1,9 +1,9 @@
 # Importing Custom Modules
 from defs import *
 from huts import Hut
-from cannon import Cannon
 from townHall import TownHall
 from king import King, renderKingColor
+from cannon import Cannon, attackCannon
 from building import renderBuildingColor
 from barbarian import renderBarbarianColor, moveBarbarians, attackBarbarians
 
@@ -13,6 +13,7 @@ class Game:
         self.board = []
         self.state = True
         self.activeBuildings = []
+        self.activeCannons = []
         self.activeBarbarians = []
         self.activeKing = None
         self.numActiveBuildings = 0
@@ -59,6 +60,8 @@ class Game:
             for j in range(len(board[i])):
                 print(board[i][j], end='')
 
+        print("Active Troops: " + str(self.numActiveTroops))
+
     def checkGame(self):
         if(self.numActiveTroops == 0):
             self.result = 'LOSE'
@@ -70,4 +73,5 @@ class Game:
     def update(self):
         moveBarbarians(self)
         attackBarbarians(self)
+        attackCannon(self)
         self.checkGame()
