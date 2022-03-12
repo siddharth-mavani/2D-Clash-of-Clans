@@ -30,7 +30,7 @@ A game similar to Brick Breaker, but runs on terminal because flash player is de
 
 ### Polymorphism
 
-Functions such as `display`, `move`, etc are common for multiple objects.
+Functions such as `attack`, `move`, etc are common for multiple objects.
 
 ### Encapsulation
 
@@ -38,4 +38,4 @@ Multiple classes and objects are used.
 
 ### Abstraction
 
-Many functions such as `activate`, `move`, etc are abstracted.
+Many functions such as `printBoard`, `updateGame`, etc are abstracted.
