@@ -12,6 +12,28 @@ class Cannon(Building):
         self.position = []
         self.center = []
         
+    def addCannon(self, game, x, y):
+        coord = []
+        for i in range(x, x+2):
+            point = [i]
+            for j in range(y-1, y+1):
+                point.append(j)
+                coord.append(point)
+                point = [i]
+                game.board[i][j] = self.symbol
+
+        self.position = coord
+
+        avgX = 0
+        avgY = 0
+        for i in coord:
+            avgX += i[0]
+            avgY += i[1]
+
+        avgX = avgX/len(coord)
+        avgY = avgY/len(coord)
+
+        self.center = [avgX, avgY]
 
     def initCannon(game):
         game.numActiveBuildings += 3
@@ -26,75 +48,14 @@ class Cannon(Building):
 
         x1 = ROWS//4
         y1 = COLS//2
-        coord = []
-        for i in range(x1, x1+2):
-            point = [i]
-            for j in range(y1-1, y1+1):
-                point.append(j)
-                coord.append(point)
-                point = [i]
-                game.board[i][j] = Cannon1.symbol
-
-        Cannon1.position = coord
-
-        avgX = 0
-        avgY = 0
-        for i in coord:
-            avgX += i[0]
-            avgY += i[1]
-
-        avgX = avgX/len(coord)
-        avgY = avgY/len(coord)
-
-        Cannon1.center = [avgX, avgY]
-
+        Cannon1.addCannon(game, x1, y1)
 
         x2 = x1*3
         y2 = y1
-        coord = []
-        for i in range(x2, x2+2):
-            point = [i]
-            for j in range(y2-1, y2+1):
-                point.append(j)
-                coord.append(point)
-                point = [i]
-                game.board[i][j] = Cannon2.symbol
-
-        Cannon2.position = coord
-
-        avgX = 0
-        avgY = 0
-        for i in coord:
-            avgX += i[0]
-            avgY += i[1]
-
-        avgX = avgX/len(coord)
-        avgY = avgY/len(coord)
-
-        Cannon2.center = [avgX, avgY]
+        Cannon2.addCannon(game, x2, y2)
 
         x3 = x1*2
         y3 = (COLS//4)*3
-        coord = []
-        for i in range(x3, x3+2):
-            point = [i]
-            for j in range(y3-1, y3+1):
-                point.append(j)
-                coord.append(point)
-                point = [i]
-                game.board[i][j] = Cannon3.symbol
-
-        Cannon3.position = coord
-
-        avgX = 0
-        avgY = 0
-        for i in coord:
-            avgX += i[0]
-            avgY += i[1]
-
-        avgX = avgX/len(coord)
-        avgY = avgY/len(coord)
-
-        Cannon3.center = [avgX, avgY]
+        Cannon3.addCannon(game, x3, y3)
 
 
