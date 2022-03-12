@@ -5,6 +5,7 @@ import os
 from input import input_to, Get
 from defs import *
 from game import Game
+from spells import castSpell
 from barbarian import spawnBarbarian
 from king import King, attackKing
 
@@ -21,17 +22,14 @@ while(game.state):
     key = input_to(get)
 
     # Handling Input
-    if key == 'p':
-        pass
-    elif key == 'q':
+    if key == 'q':
         game.state = False
     elif key in ['1', '2', '3']:
         spawnBarbarian(game, int(key))
     elif key in ['w', 'a', 's', 'd']:
         King.move(game,key)
-    elif key == '4':
-        for i in game.activeBuildings:
-            i.health -= 26
+    elif key in ['r', 'h']:
+        castSpell(game, key)
     elif key == ' ':
         attackKing(game)
         

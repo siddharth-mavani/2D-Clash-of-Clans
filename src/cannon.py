@@ -92,21 +92,18 @@ class Cannon(Building):
         return closestTarget
 
     def attack(self, game):
-
         if(self.target == None):
             self.target = self.getTarget(game)
 
         if(self.target != None and self.target.isActive):
-            print('Cannon {} is attacking {}'.format(self.name, self.target.name))
             self.target.health -= self.damage
 
             if(self.target.health <= 0):
-                print('{} has been killed!'.format(self.target.name))
                 if(self.target in game.activeBarbarians):
                     self.target.isActive = False
                     game.numActiveTroops -= 1
                 else:
-                    game.activeKing = None
+                    game.activeKing.isActive = False
                     game.numActiveTroops -= 1
 
                 self.target = None
