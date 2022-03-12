@@ -1,7 +1,9 @@
 # Importing Custom Modules
 from defs import *
-from building import TownHall, Hut, renderBuildingColor
+from huts import Hut
+from townHall import TownHall
 from king import King, renderKingColor
+from building import renderBuildingColor
 from barbarian import renderBarbarianColor
 
 class Game:
