@@ -1,5 +1,5 @@
 # Village Layout
-BG = ". "
+BG = "  "
 SIDE_WALL = "| "
 TOP_WALL = "- "
 TOP_RIGHT_CORNER = "┐"
@@ -24,6 +24,10 @@ MAX_CANNON_HEALTH = 100
 CANNON_SYMBOL = 'C '
 CANNON_RANGE = 7
 CANNON_DAMAGE = 10
+## Wall
+MAX_WALL_HEALTH = 75
+WALL_SYMBOL = '. '
+
 
 # ---------------------------------------------------------------------------------------------------------------------#
 

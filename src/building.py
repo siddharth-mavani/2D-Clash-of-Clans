@@ -9,6 +9,7 @@ class Building:
         self.name = name
         self.health = health
         self.symbol = symbol
+        self.isActive = True
 
 
 
@@ -16,7 +17,8 @@ class Building:
 def renderBuildingColor(game, activeBuildings):
     renderColorTH(game, activeBuildings[0])
     renderColorHut(game, activeBuildings[1:6])
-    renderColorCannon(game, activeBuildings[6:])
+    renderColorCannon(game, activeBuildings[6:9])
+    renderWalls(game, activeBuildings[9:])
 
 def renderColorHut(game, huts):
     for hut in huts:
@@ -73,3 +75,14 @@ def renderColorCannon(game, cannons):
             cannon.symbol = Back.GREEN + CANNON_SYMBOL + Style.RESET_ALL
             for i in cannon.position:
                 game.board[i[0]][i[1]] = cannon.symbol
+
+
+def renderWalls(game, walls):
+    for wall in walls:
+        if wall.health <= 0:
+            wall.symbol = BG
+            for i in wall.position:
+                game.board[i[0]][i[1]] = BG
+        else:
+            for i in wall.position:
+                game.board[i[0]][i[1]] = wall.symbol

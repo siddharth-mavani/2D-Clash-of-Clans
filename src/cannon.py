@@ -96,7 +96,7 @@ class Cannon(Building):
         if(self.target == None):
             self.target = self.getTarget(game)
 
-        if(self.target != None):
+        if(self.target != None and self.target.isActive):
             print('Cannon {} is attacking {}'.format(self.name, self.target.name))
             self.target.health -= self.damage
 
@@ -115,4 +115,6 @@ class Cannon(Building):
 
 def attackCannon(game):
     for cannon in game.activeCannons:
-        cannon.attack(game)
+        if(cannon.isActive):
+            cannon.attack(game)
+
