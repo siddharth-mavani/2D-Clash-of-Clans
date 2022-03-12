@@ -42,6 +42,10 @@ class Barbarian(Character):
 
 
 def spawnBarbarian(game, locID):
+
+    if(game.numBarbariansSpawned > MAX_BARBARIANS):
+        return
+
     if(locID == 1):
         x = 1;
         y = 1;
@@ -59,6 +63,7 @@ def spawnBarbarian(game, locID):
     game.Barbarians.append(barb)
     game.board[x][y] = barb.symbol
     game.numActiveTroops += 1
+    game.numBarbariansSpawned += 1
 
 def renderBarbarianColor(game, barbarians):
     for barb in barbarians:

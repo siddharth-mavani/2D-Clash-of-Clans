@@ -19,6 +19,7 @@ class Game:
         self.King = None
         self.numActiveBuildings = 0
         self.numActiveTroops = 0
+        self.numBarbariansSpawned = 0
         self.result = None
 
         # Calling init functions
