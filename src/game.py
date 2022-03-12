@@ -4,13 +4,14 @@ import os
 # Importing Custom Modules
 from input import input_to, Get
 from defs import *
-from utils import Game
+from utils import Game, saveGame
 from spells import castSpell
 from barbarian import spawnBarbarian
 from king import King, attackKing
 
 # Initializing Game
 game = Game()
+moves = []
 
 while(game.state):
     # Printing Board
@@ -20,6 +21,7 @@ while(game.state):
     # Getting Input
     get = Get()
     key = input_to(get)
+    moves.append(key)
 
     # Handling Input
     if key == 'q':
@@ -35,6 +37,8 @@ while(game.state):
         
     game.update()
 
+
+saveGame(moves)
 
 os.system('clear')
 if(game.result == 'WIN'):

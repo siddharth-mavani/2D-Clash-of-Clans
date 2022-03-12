@@ -57,12 +57,14 @@ class Game:
         renderKingColor(self, self.King)
         renderBarbarianColor(self, self.Barbarians)
 
+        numHearts = int((self.King.health / MAX_KING_HEALTH) * 10)
+        print("King Health: " + u'\u2665' * numHearts)
+
         board = self.board
         for i in range(len(board)):
             for j in range(len(board[i])):
                 print(board[i][j], end='')
 
-        print("Active Troops: " + str(self.numActiveTroops))
 
     def checkGame(self):
         if(self.numActiveTroops == 0):
@@ -77,3 +79,15 @@ class Game:
         attackBarbarians(self)
         attackCannon(self)
         self.checkGame()
+
+def saveGame(moves):
+    file = open('../history/replay.txt', 'a')
+
+    for move in moves:
+        if(move == None):
+            file.write("!")
+        else:
+            file.write(str(move))
+
+    file.write('\n')
+    file.close()

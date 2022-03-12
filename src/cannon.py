@@ -87,8 +87,6 @@ class Cannon(Building):
                 closestTarget = character
                 closestDistance = distance
         
-        if(closestTarget != None):
-            print('Closest Target: {} and distance: {}'.format(closestTarget.name, closestDistance))
         return closestTarget
 
     def attack(self, game):
