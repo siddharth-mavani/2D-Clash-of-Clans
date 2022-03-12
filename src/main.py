@@ -6,7 +6,7 @@ from input import input_to, Get
 from defs import *
 from game import Game
 from barbarian import attackBarbarians, moveBarbarians, spawnBarbarian
-from king import King
+from king import King, attackKing
 
 # Initializing Game
 game = Game()
@@ -32,6 +32,9 @@ while(game.state):
     elif key == '4':
         for i in game.activeBuildings:
             i.health -= 26
+    elif key == ' ':
+        attackKing(game)
+        
 
     moveBarbarians(game)
     attackBarbarians(game)

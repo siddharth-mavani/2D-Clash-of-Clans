@@ -70,3 +70,8 @@ def renderKingColor(game, king):
         king.symbol = Back.GREEN + KING_SYMBOL + Style.RESET_ALL
         for i in king.position:
             game.board[i[0]][i[1]] = king.symbol
+
+
+def attackKing(game):
+    king = game.activeKing
+    king.attack(game)
