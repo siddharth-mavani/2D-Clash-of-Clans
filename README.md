@@ -8,7 +8,7 @@ A game similar to Brick Breaker, but runs on terminal because flash player is de
    `pip3 install -r requirements.txt`
 2. To run the game, \
    `cd src` \
-   `python3 main.py` \
+   `python3 main.py`
 3. Ensure that your terminal is in full screen.
 
 ## Controls
