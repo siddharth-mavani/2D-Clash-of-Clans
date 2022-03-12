@@ -1,6 +1,7 @@
 # Importing Custom Modules
 from defs import *
 from huts import Hut
+from cannon import Cannon
 from townHall import TownHall
 from king import King, renderKingColor
 from building import renderBuildingColor
@@ -21,6 +22,7 @@ class Game:
         TownHall.initTH(self)
         Hut.initHut(self)
         King.initKing(self)
+        Cannon.initCannon(self)
 
 
     def initBoard(self):

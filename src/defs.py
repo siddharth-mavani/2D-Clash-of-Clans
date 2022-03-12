@@ -19,6 +19,11 @@ TOWN_HALL_SYMBOL = 'T '
 ## Hut
 MAX_HUT_HEALTH = 100
 HUT_SYMBOL = 'H '
+## Cannon
+MAX_CANNON_HEALTH = 100
+CANNON_SYMBOL = 'C '
+CANNON_RANGE = 7
+CANNON_DAMAGE = 10
 
 # ---------------------------------------------------------------------------------------------------------------------#
 
