@@ -80,7 +80,7 @@ class Cannon(Building):
         # Get closest barbarian or king from self
         closestTarget = None
         closestDistance = None
-        activeCharacters = game.activeBarbarians + [game.activeKing]
+        activeCharacters = game.Barbarians + [game.King]
         for character in activeCharacters:
             distance = self.getDistance(character)
             if((closestDistance == None or distance < closestDistance) and distance <= self.range and character.isActive):
@@ -95,15 +95,15 @@ class Cannon(Building):
         if(self.target == None):
             self.target = self.getTarget(game)
 
-        if(self.target != None and self.target.isActive):
+        if(self.target != None and self.target.isActive and self.getDistance(self.target) <= self.range):
             self.target.health -= self.damage
 
             if(self.target.health <= 0):
-                if(self.target in game.activeBarbarians):
+                if(self.target in game.Barbarians):
                     self.target.isActive = False
                     game.numActiveTroops -= 1
                 else:
-                    game.activeKing.isActive = False
+                    game.King.isActive = False
                     game.numActiveTroops -= 1
 
                 self.target = None

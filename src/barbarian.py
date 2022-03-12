@@ -52,11 +52,11 @@ def spawnBarbarian(game, locID):
         x = ROWS-2;
         y = COLS-2;
     
-    numBarbs = len(game.activeBarbarians)
+    numBarbs = len(game.Barbarians)
     BarbID = 'B' + str(numBarbs+1)
 
     barb = Barbarian(BarbID, MAX_BARB_HEALTH, BARB_DAMAGE, BARB_SPEED, BARB_SYMBOL, x, y)
-    game.activeBarbarians.append(barb)
+    game.Barbarians.append(barb)
     game.board[x][y] = barb.symbol
     game.numActiveTroops += 1
 
@@ -81,11 +81,11 @@ def renderBarbarianColor(game, barbarians):
 
 
 def moveBarbarians(game):
-    for barb in game.activeBarbarians:
+    for barb in game.Barbarians:
         if(barb.isActive):
             barb.move(game)
 
 def attackBarbarians(game):
-    for barb in game.activeBarbarians:
+    for barb in game.Barbarians:
         if(barb.isActive):
             barb.attack(game)

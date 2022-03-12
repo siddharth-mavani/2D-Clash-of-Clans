@@ -15,8 +15,8 @@ class Game:
         self.state = True
         self.activeBuildings = []
         self.activeCannons = []
-        self.activeBarbarians = []
-        self.activeKing = None
+        self.Barbarians = []
+        self.King = None
         self.numActiveBuildings = 0
         self.numActiveTroops = 0
         self.result = None
@@ -54,8 +54,8 @@ class Game:
     def printBoard(self):
 
         renderBuildingColor(self, self.activeBuildings)
-        renderKingColor(self, self.activeKing)
-        renderBarbarianColor(self, self.activeBarbarians)
+        renderKingColor(self, self.King)
+        renderBarbarianColor(self, self.Barbarians)
 
         board = self.board
         for i in range(len(board)):

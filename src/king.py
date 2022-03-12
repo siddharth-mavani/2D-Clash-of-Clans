@@ -13,50 +13,50 @@ class King(Character):
     def initKing(game):
         king = King('King', MAX_KING_HEALTH, KING_DAMAGE, KING_SPEED, KING_SYMBOL, 1, COLS-2)
         game.board[king.xPos][king.yPos] = king.symbol
-        game.activeKing = king
+        game.King = king
         game.numActiveTroops += 1
 
     def move(game, direction):
         # Check if object exists in the direction
         if(direction == 'w'):
-            if(game.board[game.activeKing.xPos-1][game.activeKing.yPos] != BG):
+            if(game.board[game.King.xPos-1][game.King.yPos] != BG):
                 return False
         elif(direction == 's'):
-            if(game.board[game.activeKing.xPos+1][game.activeKing.yPos] != BG):
+            if(game.board[game.King.xPos+1][game.King.yPos] != BG):
                 return False
         elif(direction == 'a'):
-            if(game.board[game.activeKing.xPos][game.activeKing.yPos-1] != BG):
+            if(game.board[game.King.xPos][game.King.yPos-1] != BG):
                 return False
         elif(direction == 'd'):
-            if(game.board[game.activeKing.xPos][game.activeKing.yPos+1] != BG):
+            if(game.board[game.King.xPos][game.King.yPos+1] != BG):
                 return False    
 
         # Move the object
         if(direction == 'w'):
-            game.board[game.activeKing.xPos][game.activeKing.yPos] = BG
-            game.activeKing.xPos -= 1 * game.activeKing.speed
-            game.activeKing.position = [[game.activeKing.xPos, game.activeKing.yPos]]
-            game.board[game.activeKing.xPos][game.activeKing.yPos] = game.activeKing.symbol
+            game.board[game.King.xPos][game.King.yPos] = BG
+            game.King.xPos -= 1 * game.King.speed
+            game.King.position = [[game.King.xPos, game.King.yPos]]
+            game.board[game.King.xPos][game.King.yPos] = game.King.symbol
         elif(direction == 's'):
-            game.board[game.activeKing.xPos][game.activeKing.yPos] = BG
-            game.activeKing.xPos += 1 * game.activeKing.speed
-            game.activeKing.position = [[game.activeKing.xPos, game.activeKing.yPos]]
-            game.board[game.activeKing.xPos][game.activeKing.yPos] = game.activeKing.symbol
+            game.board[game.King.xPos][game.King.yPos] = BG
+            game.King.xPos += 1 * game.King.speed
+            game.King.position = [[game.King.xPos, game.King.yPos]]
+            game.board[game.King.xPos][game.King.yPos] = game.King.symbol
         elif(direction == 'a'):
-            game.board[game.activeKing.xPos][game.activeKing.yPos] = BG
-            game.activeKing.yPos -= 1 * game.activeKing.speed
-            game.activeKing.position = [[game.activeKing.xPos, game.activeKing.yPos]]
-            game.board[game.activeKing.xPos][game.activeKing.yPos] = game.activeKing.symbol
+            game.board[game.King.xPos][game.King.yPos] = BG
+            game.King.yPos -= 1 * game.King.speed
+            game.King.position = [[game.King.xPos, game.King.yPos]]
+            game.board[game.King.xPos][game.King.yPos] = game.King.symbol
         elif(direction == 'd'):
-            game.board[game.activeKing.xPos][game.activeKing.yPos] = BG
-            game.activeKing.yPos += 1 * game.activeKing.speed
-            game.activeKing.position = [[game.activeKing.xPos, game.activeKing.yPos]]
-            game.board[game.activeKing.xPos][game.activeKing.yPos] = game.activeKing.symbol
+            game.board[game.King.xPos][game.King.yPos] = BG
+            game.King.yPos += 1 * game.King.speed
+            game.King.position = [[game.King.xPos, game.King.yPos]]
+            game.board[game.King.xPos][game.King.yPos] = game.King.symbol
 
 
 def renderKingColor(game, king):
 
-    if(game.activeKing == None):
+    if(game.King == None):
         return
 
     if king.health <= 0:
@@ -78,5 +78,5 @@ def renderKingColor(game, king):
 
 
 def attackKing(game):
-    king = game.activeKing
+    king = game.King
     king.attack(game)

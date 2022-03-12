@@ -7,14 +7,14 @@ class rageSpell:
 
     def cast(self, game):
         # double speed and damage of all active barbarians
-        for i in game.activeBarbarians:
+        for i in game.Barbarians:
             if(i.isActive):
                 i.speed *= 2
                 i.damage *= 2
         
-        if(game.activeKing.isActive):
-            game.activeKing.speed *= 2
-            game.activeKing.damage *= 2
+        if(game.King.isActive):
+            game.King.speed *= 2
+            game.King.damage *= 2
 
 class healSpell:
     def __init__(self):
@@ -22,18 +22,18 @@ class healSpell:
 
     def cast(self, game):
         # 1.5 times health of all barbarians
-        for i in game.activeBarbarians:
+        for i in game.Barbarians:
             if(i.isActive):
                 if(i.health * 1.5 >= MAX_BARB_HEALTH):
                     i.health = MAX_BARB_HEALTH
                 else:
                     i.health *= 1.5
 
-        if(game.activeKing.isActive):
-            if(game.activeKing.health * 1.5 >= MAX_KING_HEALTH):
-                game.activeKing.health = MAX_KING_HEALTH
+        if(game.King.isActive):
+            if(game.King.health * 1.5 >= MAX_KING_HEALTH):
+                game.King.health = MAX_KING_HEALTH
             else:
-                game.activeKing.health *= 1.5
+                game.King.health *= 1.5
 
 
 
