@@ -6,8 +6,8 @@ TOP_RIGHT_CORNER = "┐"
 TOP_LEFT_CORNER = "┌ "
 BOTTOM_RIGHT_CORNER = "┘"
 BOTTOM_LEFT_CORNER = "└ "
-ROWS = 35
-COLS = 35
+ROWS = 50
+COLS = 50
 
 # ---------------------------------------------------------------------------------------------------------------------#
 

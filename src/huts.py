@@ -8,6 +8,7 @@ class Hut(Building):
         super().__init__(name, health, symbol)
         self.position = []
         self.center = []
+        self.maxHealth = MAX_HUT_HEALTH
 
     def addHut(self, game, x, y):
         coord = []

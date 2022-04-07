@@ -113,7 +113,6 @@ def spawnBalloon(game, locID):
     balloon = Balloon(BalloonID, MAX_BALLOON_HEALTH, BALLOON_DAMAGE, BALLOON_SPEED, BALLOON_SYMBOL, x, y)
     game.Balloons.append(balloon)
     game.board[x][y] = balloon.symbol
-    game.numActiveTroops += 1
     game.numBalloonsSpawned += 1
 
 def renderBalloonColor(game, Balloons):

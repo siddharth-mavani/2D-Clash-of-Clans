@@ -101,7 +101,6 @@ def spawnArcher(game, locID):
     archer = Archer(archerID, MAX_ARCHER_HEALTH, ARCHER_DAMAGE, ARCHER_SPEED, ARCHER_SYMBOL, x, y)
     game.Archers.append(archer)
     game.board[x][y] = archer.symbol
-    game.numActiveTroops += 1
     game.numArchersSpawned += 1
 
 def renderArcherColor(game, Archers):

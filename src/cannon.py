@@ -11,6 +11,7 @@ class Cannon(Building):
         super().__init__(name, health, symbol)
         self.range = range
         self.damage = damage
+        self.maxHealth = MAX_CANNON_HEALTH
 
         self.position = []
         self.center = []

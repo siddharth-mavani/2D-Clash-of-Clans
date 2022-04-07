@@ -7,6 +7,7 @@ class TownHall(Building):
         super().__init__(name, health, symbol)
         self.position = []
         self.center = []
+        self.maxHealth = MAX_TOWN_HALL_HEALTH
 
     def initTH(game):
         game.numActiveBuildings += 1

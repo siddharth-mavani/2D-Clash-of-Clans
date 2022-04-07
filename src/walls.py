@@ -6,6 +6,7 @@ class Wall(Building):
     def __init__(self, name, health, symbol):
         super().__init__(name, health, symbol)
         self.position = []
+        self.maxHealth = MAX_WALL_HEALTH
 
     def initWall(game):
 

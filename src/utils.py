@@ -24,7 +24,7 @@ class Game:
         self.Archers = []
         self.King = None
         self.numActiveBuildings = 0
-        self.numActiveTroops = 0
+        self.numActiveTroops = 15
         self.numBarbariansSpawned = 0
         self.numBalloonsSpawned = 0
         self.numArchersSpawned = 0
