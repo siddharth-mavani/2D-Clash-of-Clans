@@ -9,20 +9,24 @@ from cannon import Cannon, attackCannon
 from building import renderBuildingColor
 from barbarian import renderBarbarianColor, moveBarbarians, attackBarbarians, spawnBarbarian
 from archer import renderArcherColor, moveArchers, attackArchers, spawnArcher
+from balloon import renderBalloonColor, moveBalloons, attackBalloons, spawnBalloon
 
 class Game:
     def __init__(self):
         # Initializing vars
         self.board = []
         self.state = True
-        self.activeBuildings = []
+        self.activeDefenseBuildings = []
         self.activeCannons = []
+        self.activeBuildings = []
         self.Barbarians = []
+        self.Balloons = []
         self.Archers = []
         self.King = None
         self.numActiveBuildings = 0
         self.numActiveTroops = 0
         self.numBarbariansSpawned = 0
+        self.numBalloonsSpawned = 0
         self.numArchersSpawned = 0
         self.result = None
         self.currChar = "Barbarian"
@@ -62,6 +66,7 @@ class Game:
         renderBuildingColor(self, self.activeBuildings)
         renderKingColor(self, self.King)
         renderBarbarianColor(self, self.Barbarians)
+        renderBalloonColor(self, self.Balloons)
         renderArcherColor(self, self.Archers)
 
         numHearts = int((self.King.health / MAX_KING_HEALTH) * 10)
@@ -74,10 +79,10 @@ class Game:
 
 
     def checkGame(self):
-        if(self.numActiveTroops == 0):
+        if(self.numActiveTroops <= 0):
             self.result = 'LOSE'
             self.state = False
-        elif(self.numActiveBuildings == 0):
+        elif(self.numActiveBuildings <= 0):
             self.result = 'WIN'
             self.state = False
 
@@ -87,6 +92,9 @@ class Game:
 
         moveArchers(self)
         attackArchers(self)
+
+        moveBalloons(self)
+        attackBalloons(self)
 
         attackCannon(self)
 
@@ -98,6 +106,8 @@ def spawnCharacter(game, key):
         spawnBarbarian(game, key)
     elif(game.currChar == "Archer"):
         spawnArcher(game, key)
+    elif(game.currChar == "Balloon"):
+        spawnBalloon(game, key)
 
 
 def saveGame(moves):

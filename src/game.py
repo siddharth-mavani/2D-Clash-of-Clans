@@ -37,8 +37,9 @@ while(game.state):
         game.currChar = "Barbarian"
     elif key == 'n':
         game.currChar = "Archer"
+    elif key == 'm':
+        game.currChar = "Balloon"
     
-        
     game.update()
 
 

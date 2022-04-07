@@ -54,6 +54,10 @@ class Cannon(Building):
         game.activeCannons.append(Cannon2)
         game.activeCannons.append(Cannon3)
 
+        game.activeDefenseBuildings.append(Cannon1)
+        game.activeDefenseBuildings.append(Cannon2)
+        game.activeDefenseBuildings.append(Cannon3)
+
         x1 = ROWS//4
         y1 = COLS//2
         Cannon1.addCannon(game, x1, y1)
