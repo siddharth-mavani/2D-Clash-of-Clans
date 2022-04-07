@@ -4,9 +4,8 @@ import os
 # Importing Custom Modules
 from input import input_to, Get
 from defs import *
-from utils import Game, saveGame
+from utils import Game, saveGame, spawnCharacter
 from spells import castSpell
-from barbarian import spawnBarbarian
 from king import King, attackKing
 
 # Initializing Game
@@ -27,13 +26,18 @@ while(game.state):
     if key == 'q':
         game.state = False
     elif key in ['1', '2', '3']:
-        spawnBarbarian(game, int(key))
+        spawnCharacter(game, int(key))
     elif key in ['w', 'a', 's', 'd']:
         King.move(game,key)
     elif key in ['r', 'h']:
         castSpell(game, key)
     elif key == ' ':
         attackKing(game)
+    elif key == 'b':
+        game.currChar = "Barbarian"
+    elif key == 'n':
+        game.currChar = "Archer"
+    
         
     game.update()
 

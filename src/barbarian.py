@@ -43,7 +43,7 @@ class Barbarian(Character):
 
 def spawnBarbarian(game, locID):
 
-    if(game.numBarbariansSpawned > MAX_BARBARIANS):
+    if(game.numBarbariansSpawned >= MAX_BARBARIANS):
         return
 
     if(locID == 1):

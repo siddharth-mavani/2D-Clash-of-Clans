@@ -1,4 +1,5 @@
 # Importing Custom Modules
+from archer import renderArcherColor
 from defs import *
 from huts import Hut
 from walls import Wall
@@ -6,7 +7,8 @@ from townHall import TownHall
 from king import King, renderKingColor
 from cannon import Cannon, attackCannon
 from building import renderBuildingColor
-from barbarian import renderBarbarianColor, moveBarbarians, attackBarbarians
+from barbarian import renderBarbarianColor, moveBarbarians, attackBarbarians, spawnBarbarian
+from archer import renderArcherColor, moveArchers, attackArchers, spawnArcher
 
 class Game:
     def __init__(self):
@@ -16,11 +18,14 @@ class Game:
         self.activeBuildings = []
         self.activeCannons = []
         self.Barbarians = []
+        self.Archers = []
         self.King = None
         self.numActiveBuildings = 0
         self.numActiveTroops = 0
         self.numBarbariansSpawned = 0
+        self.numArchersSpawned = 0
         self.result = None
+        self.currChar = "Barbarian"
 
         # Calling init functions
         self.initBoard()
@@ -57,6 +62,7 @@ class Game:
         renderBuildingColor(self, self.activeBuildings)
         renderKingColor(self, self.King)
         renderBarbarianColor(self, self.Barbarians)
+        renderArcherColor(self, self.Archers)
 
         numHearts = int((self.King.health / MAX_KING_HEALTH) * 10)
         print("King Health: " + u'\u2665' * numHearts)
@@ -78,8 +84,21 @@ class Game:
     def update(self):
         moveBarbarians(self)
         attackBarbarians(self)
+
+        moveArchers(self)
+        attackArchers(self)
+
         attackCannon(self)
+
         self.checkGame()
+
+
+def spawnCharacter(game, key):
+    if(game.currChar == "Barbarian"):
+        spawnBarbarian(game, key)
+    elif(game.currChar == "Archer"):
+        spawnArcher(game, key)
+
 
 def saveGame(moves):
     file = open('../history/replay.txt', 'a')
