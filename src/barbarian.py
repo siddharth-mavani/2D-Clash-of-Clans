@@ -12,38 +12,37 @@ class Barbarian(Character):
 
     def move(self, game):
         closestBuilding = self.getClosestBuilding(game)
-        
+
         # Move Barbarian towards closest building
         if(self.xPos < closestBuilding.center[0]):
-            if(game.board[self.xPos+1][self.yPos] == BG):
+            if(game.board[self.xPos+1*self.speed][self.yPos] == BG):
                 game.board[self.xPos][self.yPos] = BG
                 self.xPos += 1 * self.speed
                 self.position = [[self.xPos, self.yPos]]
                 game.board[self.xPos][self.yPos] = self.symbol
         if(self.xPos > closestBuilding.center[0]):
-            if(game.board[self.xPos-1][self.yPos] == BG):
+            if(game.board[self.xPos-1*self.speed][self.yPos] == BG):
                 game.board[self.xPos][self.yPos] = BG
                 self.xPos -= 1 * self.speed
                 self.position = [[self.xPos, self.yPos]]
                 game.board[self.xPos][self.yPos] = self.symbol
         if(self.yPos < closestBuilding.center[1]):
-            if(game.board[self.xPos][self.yPos+1] == BG):
+            if(game.board[self.xPos][self.yPos+1*self.speed] == BG):
                 game.board[self.xPos][self.yPos] = BG
                 self.yPos += 1 * self.speed
                 self.position = [[self.xPos, self.yPos]]
                 game.board[self.xPos][self.yPos] = self.symbol
         if(self.yPos > closestBuilding.center[1]):
-            if(game.board[self.xPos][self.yPos-1] == BG):
+            if(game.board[self.xPos][self.yPos-1*self.speed] == BG):
                 game.board[self.xPos][self.yPos] = BG
                 self.yPos -= 1 * self.speed
                 self.position = [[self.xPos, self.yPos]]
                 game.board[self.xPos][self.yPos] = self.symbol
 
 
-
 def spawnBarbarian(game, locID):
 
-    if(game.numBarbariansSpawned >= MAX_BARBARIANS):
+    if(game.numBarbariansSpawned >= game.maxBarbarians):
         return
 
     if(locID == 1):

@@ -1,5 +1,6 @@
 # Importing Default Libraries
 from colorama import Back, Style
+from barbarian import Barbarian
 
 # Importing Custom Modules
 from defs import *
@@ -9,39 +10,39 @@ from character import Character
 class Archer(Character):
     def __init__(self, name, health, damage, speed, symbol, xPos, yPos):
         super().__init__(name, health, damage, speed, symbol, xPos, yPos)
-        self.position = [[xPos, yPos]]
+        self.position = [[xPos, yPos]]  
 
     def move(self, game):
         closestBuilding = self.getClosestBuilding(game)
 
-        if(self.getDistance(closestBuilding) <= ARCHER_RANGE):
+        if(self.getDistance(closestBuilding) < ARCHER_RANGE):
             return
-        
+
         # Move Archer towards closest building
         if(self.xPos < closestBuilding.center[0]):
-            if(game.board[self.xPos+1][self.yPos] == BG):
+            if(game.board[self.xPos+1*self.speed][self.yPos] == BG):
                 game.board[self.xPos][self.yPos] = BG
                 self.xPos += 1 * self.speed
                 self.position = [[self.xPos, self.yPos]]
                 game.board[self.xPos][self.yPos] = self.symbol
         if(self.xPos > closestBuilding.center[0]):
-            if(game.board[self.xPos-1][self.yPos] == BG):
+            if(game.board[self.xPos-1*self.speed][self.yPos] == BG):
                 game.board[self.xPos][self.yPos] = BG
                 self.xPos -= 1 * self.speed
                 self.position = [[self.xPos, self.yPos]]
                 game.board[self.xPos][self.yPos] = self.symbol
         if(self.yPos < closestBuilding.center[1]):
-            if(game.board[self.xPos][self.yPos+1] == BG):
+            if(game.board[self.xPos][self.yPos+1*self.speed] == BG):
                 game.board[self.xPos][self.yPos] = BG
                 self.yPos += 1 * self.speed
                 self.position = [[self.xPos, self.yPos]]
                 game.board[self.xPos][self.yPos] = self.symbol
         if(self.yPos > closestBuilding.center[1]):
-            if(game.board[self.xPos][self.yPos-1] == BG):
+            if(game.board[self.xPos][self.yPos-1*self.speed] == BG):
                 game.board[self.xPos][self.yPos] = BG
                 self.yPos -= 1 * self.speed
                 self.position = [[self.xPos, self.yPos]]
-                game.board[self.xPos][self.yPos] = self.symbol
+                game.board[self.xPos][self.yPos] = self.symbol    
 
     def attack(self, game):
 
@@ -50,6 +51,7 @@ class Archer(Character):
 
         # Check if barbarians next move is coinciding with building.symbol
         if(self.getDistance(closestBuilding) <= ARCHER_RANGE):
+
             # Attack building
             closestBuilding.health -= self.damage
 
@@ -74,15 +76,11 @@ class Archer(Character):
         elif(game.board[self.xPos][self.yPos+1] == WALL_SYMBOL):
             self.attackWall(game, self.xPos, self.yPos+1)
         elif(game.board[self.xPos][self.yPos-1] == WALL_SYMBOL):
-            self.attackWall(game, self.xPos, self.yPos-1)
-
-
-
-
+            self.attackWall(game, self.xPos, self.yPos-1)  
 
 def spawnArcher(game, locID):
 
-    if(game.numArchersSpawned >= MAX_ARCHERS):
+    if(game.numArchersSpawned >= game.maxArchers):
         return
 
     if(locID == 1):
@@ -96,7 +94,7 @@ def spawnArcher(game, locID):
         y = COLS-2;
     
     numarchers = len(game.Archers)
-    archerID = 'B' + str(numarchers+1)
+    archerID = 'A' + str(numarchers+1)
 
     archer = Archer(archerID, MAX_ARCHER_HEALTH, ARCHER_DAMAGE, ARCHER_SPEED, ARCHER_SYMBOL, x, y)
     game.Archers.append(archer)

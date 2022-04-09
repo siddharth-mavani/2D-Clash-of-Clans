@@ -41,35 +41,109 @@ class Cannon(Building):
         self.center = [avgX, avgY]
 
     def initCannon(game):
-        game.numActiveBuildings += 3
 
-        Cannon1 = Cannon('C1', MAX_CANNON_HEALTH, CANNON_SYMBOL, CANNON_RANGE, CANNON_DAMAGE)
-        Cannon2 = Cannon('C2', MAX_CANNON_HEALTH, CANNON_SYMBOL, CANNON_RANGE, CANNON_DAMAGE)
-        Cannon3 = Cannon('C3', MAX_CANNON_HEALTH, CANNON_SYMBOL, CANNON_RANGE, CANNON_DAMAGE)
+        if(game.level == 1):
 
-        game.activeBuildings.append(Cannon1)
-        game.activeBuildings.append(Cannon2)
-        game.activeBuildings.append(Cannon3)
+            game.numActiveBuildings += 2
+            Cannon1 = Cannon('C1', MAX_CANNON_HEALTH, CANNON_SYMBOL, CANNON_RANGE, CANNON_DAMAGE)
+            Cannon2 = Cannon('C2', MAX_CANNON_HEALTH, CANNON_SYMBOL, CANNON_RANGE, CANNON_DAMAGE)
 
-        game.activeCannons.append(Cannon1)
-        game.activeCannons.append(Cannon2)
-        game.activeCannons.append(Cannon3)
+            game.activeBuildings.append(Cannon1)
+            game.activeBuildings.append(Cannon2)
 
-        game.activeDefenseBuildings.append(Cannon1)
-        game.activeDefenseBuildings.append(Cannon2)
-        game.activeDefenseBuildings.append(Cannon3)
+            game.activeCannons.append(Cannon1)
+            game.activeCannons.append(Cannon2)
 
-        x1 = ROWS//4
-        y1 = COLS//2
-        Cannon1.addCannon(game, x1, y1)
+            game.activeDefenseBuildings.append(Cannon1)
+            game.activeDefenseBuildings.append(Cannon2)
 
-        x2 = x1*3
-        y2 = y1
-        Cannon2.addCannon(game, x2, y2)
+            x = ROWS//5
+            y = COLS//5
 
-        x3 = x1*2
-        y3 = (COLS//4)*3
-        Cannon3.addCannon(game, x3, y3)
+            x1 = x*2
+            y1 = y*2+5
+            Cannon1.addCannon(game, x1, y1)
+
+            x2 = x*3-2
+            y2 = y*2+5
+            Cannon2.addCannon(game, x2, y2)
+        
+        elif(game.level == 2):
+
+            game.numActiveBuildings += 3
+            Cannon1 = Cannon('C1', MAX_CANNON_HEALTH, CANNON_SYMBOL, CANNON_RANGE, CANNON_DAMAGE)
+            Cannon2 = Cannon('C2', MAX_CANNON_HEALTH, CANNON_SYMBOL, CANNON_RANGE, CANNON_DAMAGE)
+            Cannon3 = Cannon('C3', MAX_CANNON_HEALTH, CANNON_SYMBOL, CANNON_RANGE, CANNON_DAMAGE)
+
+            game.activeBuildings.append(Cannon1)
+            game.activeBuildings.append(Cannon2)
+            game.activeBuildings.append(Cannon3)
+
+            game.activeCannons.append(Cannon1)
+            game.activeCannons.append(Cannon2)
+            game.activeCannons.append(Cannon3)
+
+            game.activeDefenseBuildings.append(Cannon1)
+            game.activeDefenseBuildings.append(Cannon2)
+            game.activeDefenseBuildings.append(Cannon3)
+
+            x = ROWS//5
+            y = COLS//5
+
+            x1 = x*3-2
+            y1 = y*2+1
+            Cannon1.addCannon(game, x1, y1)
+
+            x2 = x*3-2
+            y2 = y*2+5
+            Cannon2.addCannon(game, x2, y2)
+
+            x3 = x*3-2
+            y3 = y*3-2
+            Cannon3.addCannon(game, x3, y3)
+
+        elif(game.level == 3):
+
+            game.numActiveBuildings += 4
+            Cannon1 = Cannon('C1', MAX_CANNON_HEALTH, CANNON_SYMBOL, CANNON_RANGE, CANNON_DAMAGE)
+            Cannon2 = Cannon('C2', MAX_CANNON_HEALTH, CANNON_SYMBOL, CANNON_RANGE, CANNON_DAMAGE)
+            Cannon3 = Cannon('C3', MAX_CANNON_HEALTH, CANNON_SYMBOL, CANNON_RANGE, CANNON_DAMAGE)
+            Cannon4 = Cannon('C4', MAX_CANNON_HEALTH, CANNON_SYMBOL, CANNON_RANGE, CANNON_DAMAGE)
+
+            game.activeBuildings.append(Cannon1)
+            game.activeBuildings.append(Cannon2)
+            game.activeBuildings.append(Cannon3)
+            game.activeBuildings.append(Cannon4)
+
+            game.activeCannons.append(Cannon1)
+            game.activeCannons.append(Cannon2)
+            game.activeCannons.append(Cannon3)
+            game.activeCannons.append(Cannon4)
+
+            game.activeDefenseBuildings.append(Cannon1)
+            game.activeDefenseBuildings.append(Cannon2)
+            game.activeDefenseBuildings.append(Cannon3)
+            game.activeDefenseBuildings.append(Cannon4)
+
+            x = ROWS//5
+            y = COLS//5
+
+            x1 = x*3-2
+            y1 = y*2+1
+            Cannon1.addCannon(game, x1, y1)
+
+            x2 = x*3-2
+            y2 = y*2+5
+            Cannon2.addCannon(game, x2, y2)
+
+            x3 = x*3-2
+            y3 = y*3-2
+            Cannon3.addCannon(game, x3, y3)
+
+            x4 = (ROWS // 4) * 2
+            y4 = y*3-2
+            Cannon4.addCannon(game, x4, y4)
+
 
     def getDistance(self, character):
         x1 = self.center[0]

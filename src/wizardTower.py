@@ -42,27 +42,110 @@ class WT(Building):
         self.center = [avgX, avgY]
 
     def initWT(game):
-        game.numActiveBuildings += 2
 
-        WT1 = WT('W1', MAX_WT_HEALTH, WT_SYMBOL, WT_RANGE, WT_DAMAGE)
-        WT2 = WT('W2', MAX_WT_HEALTH, WT_SYMBOL, WT_RANGE, WT_DAMAGE)
+        if(game.level == 1):
 
-        game.activeBuildings.append(WT1)
-        game.activeBuildings.append(WT2)
+            game.numActiveBuildings += 2
+            WT1 = WT('W1', MAX_WT_HEALTH, WT_SYMBOL, WT_RANGE, WT_DAMAGE)
+            WT2 = WT('W2', MAX_WT_HEALTH, WT_SYMBOL, WT_RANGE, WT_DAMAGE)
 
-        game.activeWTs.append(WT1)
-        game.activeWTs.append(WT2)
+            game.activeBuildings.append(WT1)
+            game.activeBuildings.append(WT2)
 
-        game.activeDefenseBuildings.append(WT1)
-        game.activeDefenseBuildings.append(WT2)
+            game.activeWTs.append(WT1)
+            game.activeWTs.append(WT2)
 
-        x1 = ROWS//4
-        y1 = COLS//4
-        WT1.addWT(game, x1, y1)
+            game.activeDefenseBuildings.append(WT1)
+            game.activeDefenseBuildings.append(WT2)
 
-        x2 = x1*3
-        y2 = y1
-        WT2.addWT(game, x2, y2)
+            x = ROWS // 4
+            y = COLS // 5
+
+            x1 = x*2
+            y1 = y*3-2
+            WT1.addWT(game, x1, y1)
+
+            x2 = x*2
+            y2 = y*2+1
+            WT2.addWT(game, x2, y2)
+
+        elif(game.level == 2):
+            
+            game.numActiveBuildings += 3
+            WT1 = WT('W1', MAX_WT_HEALTH, WT_SYMBOL, WT_RANGE, WT_DAMAGE)
+            WT2 = WT('W2', MAX_WT_HEALTH, WT_SYMBOL, WT_RANGE, WT_DAMAGE)
+            WT3 = WT('W3', MAX_WT_HEALTH, WT_SYMBOL, WT_RANGE, WT_DAMAGE)
+
+            game.activeBuildings.append(WT1)
+            game.activeBuildings.append(WT2)
+            game.activeBuildings.append(WT3)
+
+            game.activeWTs.append(WT1)
+            game.activeWTs.append(WT2)
+            game.activeWTs.append(WT3)
+
+            game.activeDefenseBuildings.append(WT1)
+            game.activeDefenseBuildings.append(WT2)
+            game.activeDefenseBuildings.append(WT3)
+
+            x = ROWS // 5
+            y = COLS // 5
+
+            x1 = x*2
+            y1 = y*2+1
+            WT1.addWT(game, x1, y1)
+
+            x2 = x*2
+            y2 = y*2+5
+            WT2.addWT(game, x2, y2)
+
+            x3 = x*2
+            y3 = y*3-2
+            WT3.addWT(game, x3, y3)
+
+        elif(game.level == 3):
+
+            game.numActiveBuildings += 4
+            WT1 = WT('W1', MAX_WT_HEALTH, WT_SYMBOL, WT_RANGE, WT_DAMAGE)
+            WT2 = WT('W2', MAX_WT_HEALTH, WT_SYMBOL, WT_RANGE, WT_DAMAGE)
+            WT3 = WT('W3', MAX_WT_HEALTH, WT_SYMBOL, WT_RANGE, WT_DAMAGE)
+            WT4 = WT('W4', MAX_WT_HEALTH, WT_SYMBOL, WT_RANGE, WT_DAMAGE)
+
+            game.activeBuildings.append(WT1)
+            game.activeBuildings.append(WT2)
+            game.activeBuildings.append(WT3)
+            game.activeBuildings.append(WT4)
+
+            game.activeWTs.append(WT1)
+            game.activeWTs.append(WT2)
+            game.activeWTs.append(WT3)
+            game.activeWTs.append(WT4)
+
+            game.activeDefenseBuildings.append(WT1)
+            game.activeDefenseBuildings.append(WT2)
+            game.activeDefenseBuildings.append(WT3)
+            game.activeDefenseBuildings.append(WT4)
+
+            x = ROWS // 5
+            y = COLS // 5
+
+            x1 = x*2
+            y1 = y*2+1
+            WT1.addWT(game, x1, y1)
+
+            x2 = x*2
+            y2 = y*2+5
+            WT2.addWT(game, x2, y2)
+
+            x3 = x*2
+            y3 = y*3-2
+            WT3.addWT(game, x3, y3)
+
+            x4 = (ROWS // 4) * 2
+            y4 = y*2+1
+            WT4.addWT(game, x4, y4)
+
+
 
     def getDistance(self, character):
         x1 = self.center[0]

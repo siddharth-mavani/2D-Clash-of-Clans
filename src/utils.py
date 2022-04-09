@@ -1,3 +1,6 @@
+# Importing Libraries
+import os
+
 # Importing Custom Modules
 from archer import renderArcherColor
 from defs import *
@@ -13,7 +16,7 @@ from archer import renderArcherColor, moveArchers, attackArchers, spawnArcher
 from balloon import renderBalloonColor, moveBalloons, attackBalloons, spawnBalloon
 
 class Game:
-    def __init__(self):
+    def __init__(self, level, maxBarbarians, maxArchers, maxBalloons):
         # Initializing vars
         self.board = []
         self.state = True
@@ -26,12 +29,16 @@ class Game:
         self.Archers = []
         self.King = None
         self.numActiveBuildings = 0
-        self.numActiveTroops = 15
+        self.maxBarbarians = maxBarbarians
+        self.maxArchers = maxArchers
+        self.maxBalloons = maxBalloons
+        self.numActiveTroops = maxBalloons + maxArchers + maxBarbarians + 1
         self.numBarbariansSpawned = 0
         self.numBalloonsSpawned = 0
         self.numArchersSpawned = 0
         self.result = None
         self.currChar = "Barbarian"
+        self.level = level
 
         # Calling init functions
         self.initBoard()
@@ -72,19 +79,22 @@ class Game:
         renderBalloonColor(self, self.Balloons)
         renderArcherColor(self, self.Archers)
 
-        numHearts = int((self.King.health / MAX_KING_HEALTH) * 10)
-        print("King Health: " + u'\u2665' * numHearts)
+        print("LEVEL " + str(self.level))
 
         board = self.board
         for i in range(len(board)):
             for j in range(len(board[i])):
                 print(board[i][j], end='')
+        
+        numHearts = int((self.King.health / MAX_KING_HEALTH) * 10)
+        print("King Health: " + u'\u2665' * numHearts)
 
 
     def checkGame(self):
         if(self.numActiveTroops <= 0):
-            self.result = 'LOSE'
-            self.state = False
+            os.system('clear')
+            print('YOU LOSE :(')
+            exit(0)
         elif(self.numActiveBuildings <= 0):
             self.result = 'WIN'
             self.state = False

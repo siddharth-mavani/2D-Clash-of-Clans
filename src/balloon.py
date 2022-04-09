@@ -94,7 +94,7 @@ class Balloon(Character):
 
 def spawnBalloon(game, locID):
 
-    if(game.numBalloonsSpawned >= MAX_BALLOONS):
+    if(game.numBalloonsSpawned >= game.maxBalloons):
         return
 
     if(locID == 1):
