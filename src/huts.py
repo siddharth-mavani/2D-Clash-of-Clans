@@ -34,27 +34,27 @@ class Hut(Building):
         self.center = [avgX, avgY]
 
     def initHut(game):
-        game.numActiveBuildings += 5
-        H1 = Hut('H1', MAX_HUT_HEALTH, HUT_SYMBOL)
-        H2 = Hut('H2', MAX_HUT_HEALTH, HUT_SYMBOL)
+        game.numActiveBuildings += 3
+        # H1 = Hut('H1', MAX_HUT_HEALTH, HUT_SYMBOL)
+        # H2 = Hut('H2', MAX_HUT_HEALTH, HUT_SYMBOL)
         H3 = Hut('H3', MAX_HUT_HEALTH, HUT_SYMBOL)
         H4 = Hut('H4', MAX_HUT_HEALTH, HUT_SYMBOL)
         H5 = Hut('H5', MAX_HUT_HEALTH, HUT_SYMBOL)
 
-        game.activeBuildings.append(H1)
-        game.activeBuildings.append(H2)
+        # game.activeBuildings.append(H1)
+        # game.activeBuildings.append(H2)
         game.activeBuildings.append(H3)
         game.activeBuildings.append(H4)
         game.activeBuildings.append(H5)
 
         x1 = ROWS//4
         y1 = COLS//4
-        H1.addHut(game, x1, y1)
+        # H1.addHut(game, x1, y1)
 
 
-        x2 = x1*3
-        y2 = y1
-        H2.addHut(game, x2, y2)
+        # x2 = x1*3
+        # y2 = y1
+        # H2.addHut(game, x2, y2)
 
         x3 = x1
         y3 = y1*3

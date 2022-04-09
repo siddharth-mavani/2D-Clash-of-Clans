@@ -6,6 +6,7 @@ from walls import Wall
 from townHall import TownHall
 from king import King, renderKingColor
 from cannon import Cannon, attackCannon
+from wizardTower import WT, attackWT
 from building import renderBuildingColor
 from barbarian import renderBarbarianColor, moveBarbarians, attackBarbarians, spawnBarbarian
 from archer import renderArcherColor, moveArchers, attackArchers, spawnArcher
@@ -19,6 +20,7 @@ class Game:
         self.activeDefenseBuildings = []
         self.activeCannons = []
         self.activeBuildings = []
+        self.activeWTs = []
         self.Barbarians = []
         self.Balloons = []
         self.Archers = []
@@ -37,6 +39,7 @@ class Game:
         Hut.initHut(self)
         King.initKing(self)
         Cannon.initCannon(self)
+        WT.initWT(self)
         Wall.initWall(self)
 
 
@@ -97,6 +100,7 @@ class Game:
         attackBalloons(self)
 
         attackCannon(self)
+        attackWT(self)
 
         self.checkGame()
 

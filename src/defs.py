@@ -16,17 +16,27 @@ COLS = 50
 ## Town Hall
 MAX_TOWN_HALL_HEALTH = 200
 TOWN_HALL_SYMBOL = 'T '
+
 ## Hut
 MAX_HUT_HEALTH = 100
 HUT_SYMBOL = 'H '
+
 ## Cannon
 MAX_CANNON_HEALTH = 100
 CANNON_SYMBOL = 'C '
 CANNON_RANGE = 7
 CANNON_DAMAGE = 10
+
+## Wizard Tower
+MAX_WT_HEALTH = 200
+WT_SYMBOL = 'W '
+WT_RANGE = CANNON_RANGE
+WT_DAMAGE = CANNON_DAMAGE
+
 ## Wall
 MAX_WALL_HEALTH = 75
 WALL_SYMBOL = '. '
+
 
 
 # ---------------------------------------------------------------------------------------------------------------------#
