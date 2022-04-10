@@ -8,6 +8,7 @@ from huts import Hut
 from walls import Wall
 from townHall import TownHall
 from king import King, renderKingColor
+from queen import Queen, renderQueenColor
 from cannon import Cannon, attackCannon
 from wizardTower import WT, attackWT
 from building import renderBuildingColor
@@ -16,7 +17,7 @@ from archer import renderArcherColor, moveArchers, attackArchers, spawnArcher
 from balloon import renderBalloonColor, moveBalloons, attackBalloons, spawnBalloon
 
 class Game:
-    def __init__(self, level, maxBarbarians, maxArchers, maxBalloons):
+    def __init__(self, level, maxBarbarians, maxArchers, maxBalloons, charType):
         # Initializing vars
         self.board = []
         self.state = True
@@ -27,7 +28,6 @@ class Game:
         self.Barbarians = []
         self.Balloons = []
         self.Archers = []
-        self.King = None
         self.numActiveBuildings = 0
         self.maxBarbarians = maxBarbarians
         self.maxArchers = maxArchers
@@ -39,15 +39,21 @@ class Game:
         self.result = None
         self.currChar = "Barbarian"
         self.level = level
+        self.MC_Type = charType
+        self.MC = None
 
         # Calling init functions
         self.initBoard()
         TownHall.initTH(self)
         Hut.initHut(self)
-        King.initKing(self)
         Cannon.initCannon(self)
         WT.initWT(self)
         Wall.initWall(self)
+
+        if(charType == "1"):
+            King.initKing(self)
+        else:
+            Queen.initQueen(self)
 
 
     def initBoard(self):
@@ -74,10 +80,14 @@ class Game:
     def printBoard(self):
 
         renderBuildingColor(self, self.activeBuildings)
-        renderKingColor(self, self.King)
         renderBarbarianColor(self, self.Barbarians)
         renderBalloonColor(self, self.Balloons)
         renderArcherColor(self, self.Archers)
+
+        if(self.MC_Type == "1"):
+            renderKingColor(self, self.MC)
+        else:
+            renderQueenColor(self, self.MC)
 
         print("LEVEL " + str(self.level))
 
@@ -86,7 +96,7 @@ class Game:
             for j in range(len(board[i])):
                 print(board[i][j], end='')
         
-        numHearts = int((self.King.health / MAX_KING_HEALTH) * 10)
+        numHearts = int((self.MC.health / MAX_KING_HEALTH) * 10)
         print("King Health: " + u'\u2665' * numHearts)
 
 

@@ -12,9 +12,9 @@ class rageSpell:
                 i.speed *= 2
                 i.damage *= 2
         
-        if(game.King.isActive):
-            game.King.speed *= 2
-            game.King.damage *= 2
+        if(game.MC.isActive):
+            game.MC.speed *= 2
+            game.MC.damage *= 2
 
 class healSpell:
     def __init__(self):
@@ -29,11 +29,11 @@ class healSpell:
                 else:
                     i.health *= 1.5
 
-        if(game.King.isActive):
-            if(game.King.health * 1.5 >= MAX_KING_HEALTH):
-                game.King.health = MAX_KING_HEALTH
+        if(game.MC.isActive):
+            if(game.MC.health * 1.5 >= MAX_KING_HEALTH):
+                game.MC.health = MAX_KING_HEALTH
             else:
-                game.King.health *= 1.5
+                game.MC.health *= 1.5
 
 
 

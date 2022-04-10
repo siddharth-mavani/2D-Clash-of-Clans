@@ -9,14 +9,23 @@ from spells import castSpell
 from king import King, attackKing
 
 # Initializing Game
-
 moves = []
+ 
+print("Please select your Character(1 or 2):")
+print("1. Barbarian King")
+print("2. Archer Queen")
+inp = input("")
+ 
+while(inp not in ["1", "2"]):
+    print("Please enter a valid input(1 or 2)")
+    inp = input("")
+    
 
 for level in [1, 2, 3]:
-    game = Game(level, MAX_BARBARIANS, MAX_ARCHERS, MAX_BALLOONS)
+    game = Game(level, MAX_BARBARIANS, MAX_ARCHERS, MAX_BALLOONS, inp)
 
     while(game.state):
-        # Printing Board
+        # Printing Board 
         os.system('clear')
         game.printBoard()
 

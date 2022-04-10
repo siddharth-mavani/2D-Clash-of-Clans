@@ -161,7 +161,7 @@ class WT(Building):
         # Get closest barbarian or king from self
         closestTarget = None
         closestDistance = None
-        activeCharacters = game.Barbarians + [game.King] + game.Archers + game.Balloons
+        activeCharacters = game.Barbarians + [game.MC] + game.Archers + game.Balloons
         for character in activeCharacters:
             distance = self.getDistance(character)
             if((closestDistance == None or distance < closestDistance) and distance <= self.range and character.isActive):
@@ -199,11 +199,11 @@ class WT(Building):
                         if(xDistance <= 1 and yDistance <= 1):
                             targets.append(archer)
                 
-                if(game.King.isActive and game.King != self.target):
-                    xDistance = abs(game.King.xPos - self.target.xPos)
-                    yDistance = abs(game.King.yPos - self.target.yPos)
+                if(game.MC.isActive and game.MC != self.target):
+                    xDistance = abs(game.MC.xPos - self.target.xPos)
+                    yDistance = abs(game.MC.yPos - self.target.yPos)
                     if(xDistance <= 1 and yDistance <= 1):
-                        targets.append(game.King)
+                        targets.append(game.MC)
 
         # Attack all targets
         for target in targets:
@@ -215,7 +215,7 @@ class WT(Building):
                         target.isActive = False
                         game.numActiveTroops -= 1
                     else:
-                        game.King.isActive = False
+                        game.MC.isActive = False
                         game.numActiveTroops -= 1
 
                     self.target = None

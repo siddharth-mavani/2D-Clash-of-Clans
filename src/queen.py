@@ -5,15 +5,15 @@ from colorama import Back, Style
 from defs import *
 from character import Character
 
-class King(Character):
+class Queen(Character):
     def __init__(self, name, health, damage, speed, symbol, xPos, yPos):
         super().__init__(name, health, damage, speed, symbol, xPos, yPos)
         self.position = [[xPos, yPos]]
 
-    def initKing(game):
-        king = King('King', MAX_KING_HEALTH, KING_DAMAGE, KING_SPEED, KING_SYMBOL, 1, COLS-2)
-        game.board[king.xPos][king.yPos] = king.symbol
-        game.MC = king
+    def initQueen(game):
+        queen = Queen('queen', MAX_QUEEN_HEALTH, QUEEN_DAMAGE, QUEEN_SPEED, QUEEN_SYMBOL, 1, COLS-2)
+        game.board[queen.xPos][queen.yPos] = queen.symbol
+        game.MC = queen
 
     def move(game, direction):
         # Check if object exists in the direction
@@ -53,29 +53,29 @@ class King(Character):
             game.board[game.MC.xPos][game.MC.yPos] = game.MC.symbol
 
 
-def renderKingColor(game, king):
+def renderQueenColor(game, queen):
 
     if(game.MC == None):
         return
 
-    if king.health <= 0:
-        king.symbol = BG
-        for i in king.position:
+    if queen.health <= 0:
+        queen.symbol = BG
+        for i in queen.position:
             game.board[i[0]][i[1]] = BG
-    elif(king.health <= 0.25 * MAX_KING_HEALTH):
-        king.symbol = Back.RED + KING_SYMBOL + Style.RESET_ALL
-        for i in king.position:
-            game.board[i[0]][i[1]] = king.symbol
-    elif(king.health <= 0.75 * MAX_KING_HEALTH):
-        king.symbol = Back.YELLOW + KING_SYMBOL + Style.RESET_ALL
-        for i in king.position:
-            game.board[i[0]][i[1]] = king.symbol
+    elif(queen.health <= 0.25 * MAX_QUEEN_HEALTH):
+        queen.symbol = Back.RED + QUEEN_SYMBOL + Style.RESET_ALL
+        for i in queen.position:
+            game.board[i[0]][i[1]] = queen.symbol
+    elif(queen.health <= 0.75 * MAX_QUEEN_HEALTH):
+        queen.symbol = Back.YELLOW + QUEEN_SYMBOL + Style.RESET_ALL
+        for i in queen.position:
+            game.board[i[0]][i[1]] = queen.symbol
     else:
-        king.symbol = Back.GREEN + KING_SYMBOL + Style.RESET_ALL
-        for i in king.position:
-            game.board[i[0]][i[1]] = king.symbol
+        queen.symbol = Back.GREEN + QUEEN_SYMBOL + Style.RESET_ALL
+        for i in queen.position:
+            game.board[i[0]][i[1]] = queen.symbol
 
 
-def attackKing(game):
-    king = game.MC
-    king.attack(game)
+def attackQueen(game):
+    queen = game.MC
+    queen.attack(game)
