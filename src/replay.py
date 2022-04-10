@@ -4,10 +4,8 @@ import time
 
 # Importing Custom Modules
 from defs import *
-from utils import Game
+from utils import Game, saveGame, spawnCharacter, attackMC, moveMC
 from spells import castSpell
-from barbarian import spawnBarbarian
-from king import King, attackKing
 
 file = open('../history/replay.txt', 'r')
 file = file.read()
@@ -25,29 +23,65 @@ while(1):
         reqReplay = int(input("Please enter a valid input: "))
 
     replayStr = file[numReplays - reqReplay]
+    index = 0
 
-    # Initializing Game
-    game = Game()
-    moves = []
+    while(1):
+        print("Please select your Character(1 or 2):")
+        print("1. Barbarian King")
+        print("2. Archer Queen")
 
-    for key in replayStr:
-        # Printing Board
+
+        inp = replayStr[index]
+        index+=1
+
+        while(inp not in ["1", "2"]):
+            print("Please enter a valid input(1 or 2)")
+            inp = replayStr[index]
+            index+=1
+
+        for level in [1, 2, 3]:
+
+            game = Game(level, MAX_BARBARIANS, MAX_ARCHERS, MAX_BALLOONS, inp)
+
+            while(game.state):
+                # Printing Board 
+                os.system('clear')
+                game.printBoard()
+
+                key = replayStr[index]
+                index+=1
+
+                # Handling Input
+                if key == 'q':
+                    game.state = False
+                elif key in ['1', '2', '3']:
+                    spawnCharacter(game, int(key))
+                elif key in ['w', 'a', 's', 'd']:
+                    moveMC(game, key)
+                    direction = key
+                elif key in ['r', 'h']:
+                    castSpell(game, key)
+                elif key == ' ':
+                    attackMC(game, direction)
+                elif key == 'b':
+                    game.currChar = "Barbarian"
+                elif key == 'n':
+                    game.currChar = "Archer"
+                elif key == 'm':
+                    game.currChar = "Balloon"
+                
+                game.update()
+                time.sleep(0.1)
+
+
+            if(game.level < 2):
+                print("LEVEL UP!")
+                MAX_BARBARIANS += 2
+                MAX_ARCHERS += 2
+                MAX_BALLOONS += 1
+
         os.system('clear')
-        game.printBoard()
+        print('YOU WIN :)')
+        exit(0)
 
-        # Handling Input
-        if key == 'q':
-            game.state = False
-        elif key in ['1', '2', '3']:
-            spawnBarbarian(game, int(key))
-        elif key in ['w', 'a', 's', 'd']:
-            King.move(game,key)
-        elif key in ['r', 'h']:
-            castSpell(game, key)
-        elif key == ' ':
-            attackKing(game)
-            
-        game.update()
-        time.sleep(0.1)
 
-    os.system('clear')

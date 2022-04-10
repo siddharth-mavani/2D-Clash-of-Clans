@@ -36,7 +36,7 @@ for level in [1, 2, 3]:
 
         # Handling Input
         if key == 'q':
-            game.state = False
+            exit(0)
         elif key in ['1', '2', '3']:
             spawnCharacter(game, int(key))
         elif key in ['w', 'a', 's', 'd']:
