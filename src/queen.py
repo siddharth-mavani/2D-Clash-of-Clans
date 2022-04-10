@@ -53,9 +53,74 @@ class Queen(Character):
             game.board[game.MC.xPos][game.MC.yPos] = game.MC.symbol
 
 
-    def attack(self, game, direction):
-        print("Queen Attack Here:" + direction)
+    def getAttackCoordinates(self, direction):
 
+        coordinates = []
+
+        if(direction == 'w'):
+            coordinates.append(max(self.position[0][0] - 8, 2))
+            coordinates.append(self.position[0][1])
+        elif(direction == 'a'):
+            coordinates.append(self.position[0][0])
+            coordinates.append(max(self.position[0][1] - 8, 2))
+        elif(direction == 's'):
+            coordinates.append(min(self.position[0][0] + 8, ROWS-2))
+            coordinates.append(self.position[0][1])
+        else:
+            coordinates.append(self.position[0][0])
+            coordinates.append(min(self.position[0][1] + 8, COLS-2))
+
+        return coordinates
+
+    def attack(self, game, direction):
+
+        attackCoordinates = self.getAttackCoordinates(direction)
+        print(self.position)
+        print(attackCoordinates)
+
+        buildings = []
+
+        # Get all buildings in 5x5 grid around attack coordinates
+        for i in range(attackCoordinates[0]-2, attackCoordinates[0]+3):
+            for j in range(attackCoordinates[1]-2, attackCoordinates[1]+3):
+                for building in game.activeBuildings:
+                    for k in building.position:
+                        if(k[0] == i and k[1] == j):
+                            if(building not in buildings and building.isActive and building.name != 'W'):
+                                buildings.append(building)
+                            break
+
+        if(len(buildings) == 0):
+            # Check if wall is on the way to building
+            if(game.board[self.xPos+1][self.yPos] == WALL_SYMBOL):
+                self.attackWall(game, self.xPos+1, self.yPos)
+            elif(game.board[self.xPos-1][self.yPos] == WALL_SYMBOL):
+                self.attackWall(game, self.xPos-1, self.yPos) 
+            elif(game.board[self.xPos][self.yPos+1] == WALL_SYMBOL):
+                self.attackWall(game, self.xPos, self.yPos+1)
+            elif(game.board[self.xPos][self.yPos-1] == WALL_SYMBOL):
+                self.attackWall(game, self.xPos, self.yPos-1)  
+            
+            print("empty")
+            return
+
+
+        for i in buildings:
+            print(i.name)
+
+
+        # attack all buildings
+        for building in buildings:
+
+            building.health -= self.damage
+            if(building.health <= 0):
+                
+                for i in building.position:
+                    game.board[i[0]][i[1]] = BG
+                
+                building.isActive = False
+                building.center = [100000, 100000]
+                game.numActiveBuildings -= 1
 
 def renderQueenColor(game, queen):
 

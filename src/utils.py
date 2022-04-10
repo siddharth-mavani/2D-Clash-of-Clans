@@ -96,8 +96,13 @@ class Game:
             for j in range(len(board[i])):
                 print(board[i][j], end='')
         
-        numHearts = int((self.MC.health / MAX_KING_HEALTH) * 10)
-        print("King Health: " + u'\u2665' * numHearts)
+        if(self.MC_Type == "1"):
+            numHearts = int((self.MC.health / MAX_KING_HEALTH) * 10)
+            print("King Health: " + u'\u2665' * numHearts)
+        else:
+            numHearts = int((self.MC.health / MAX_QUEEN_HEALTH) * 10)
+            print("Queen Health: " + u'\u2665' * numHearts)
+
 
 
     def checkGame(self):
