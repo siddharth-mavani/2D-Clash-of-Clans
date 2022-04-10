@@ -1,6 +1,6 @@
 # 2D-Clash-of-Clans
 
-A game similar to Brick Breaker, but runs on terminal because flash player is dead.
+A miniature 2D version of Clash of Clans that works on CLI
 
 ## Installation and running
 
@@ -19,9 +19,12 @@ A game similar to Brick Breaker, but runs on terminal because flash player is de
 - `d` move King right
 - `r` use Rage spell
 - `h` use Heal spell
-- `1` spawn Barbarian at top left corner
-- `2` spawn Barbarian at Bottom left corner
-- `3` spawn Barbarian at Bottom Right corner
+- `b` select Barabarian
+- `n` select Archer
+- `m` select Balloon
+- `1` spawn troop at top left corner
+- `2` spawn troop at Bottom left corner
+- `3` spawn troop at Bottom Right corner
 ## Features
 
 ### Inheritance
