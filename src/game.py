@@ -4,12 +4,12 @@ import os
 # Importing Custom Modules
 from input import input_to, Get
 from defs import *
-from utils import Game, saveGame, spawnCharacter
+from utils import Game, saveGame, spawnCharacter, attackMC, moveMC
 from spells import castSpell
-from king import King, attackKing
 
 # Initializing Game
 moves = []
+direction = ""
  
 print("Please select your Character(1 or 2):")
 print("1. Barbarian King")
@@ -40,11 +40,12 @@ for level in [1, 2, 3]:
         elif key in ['1', '2', '3']:
             spawnCharacter(game, int(key))
         elif key in ['w', 'a', 's', 'd']:
-            King.move(game,key)
+            moveMC(game, key)
+            direction = key
         elif key in ['r', 'h']:
             castSpell(game, key)
         elif key == ' ':
-            attackKing(game)
+            attackMC(game, direction)
         elif key == 'b':
             game.currChar = "Barbarian"
         elif key == 'n':
@@ -54,10 +55,11 @@ for level in [1, 2, 3]:
         
         game.update()
 
-    print("LEVEL UP!")
-    MAX_BARBARIANS += 2
-    MAX_ARCHERS += 2
-    MAX_BALLOONS += 1
+    if(game.level < 2):
+        print("LEVEL UP!")
+        MAX_BARBARIANS += 2
+        MAX_ARCHERS += 2
+        MAX_BALLOONS += 1
 
 
 saveGame(moves)

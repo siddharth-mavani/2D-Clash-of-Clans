@@ -7,8 +7,8 @@ from defs import *
 from huts import Hut
 from walls import Wall
 from townHall import TownHall
-from king import King, renderKingColor
-from queen import Queen, renderQueenColor
+from king import King, renderKingColor, attackKing
+from queen import Queen, renderQueenColor, attackQueen
 from cannon import Cannon, attackCannon
 from wizardTower import WT, attackWT
 from building import renderBuildingColor
@@ -132,6 +132,18 @@ def spawnCharacter(game, key):
         spawnArcher(game, key)
     elif(game.currChar == "Balloon"):
         spawnBalloon(game, key)
+
+def attackMC(game, direction):
+    if(game.MC_Type == "1"):
+        attackKing(game)
+    else:
+        attackQueen(game, direction)
+
+def moveMC(game, direction):
+    if(game.MC_Type == "1"):
+        King.move(game,direction)
+    else:
+        Queen.move(game,direction)
 
 
 def saveGame(moves):

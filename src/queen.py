@@ -53,6 +53,10 @@ class Queen(Character):
             game.board[game.MC.xPos][game.MC.yPos] = game.MC.symbol
 
 
+    def attack(self, game, direction):
+        print("Queen Attack Here:" + direction)
+
+
 def renderQueenColor(game, queen):
 
     if(game.MC == None):
@@ -76,6 +80,6 @@ def renderQueenColor(game, queen):
             game.board[i[0]][i[1]] = queen.symbol
 
 
-def attackQueen(game):
+def attackQueen(game, direction):
     queen = game.MC
-    queen.attack(game)
+    queen.attack(game, direction)
